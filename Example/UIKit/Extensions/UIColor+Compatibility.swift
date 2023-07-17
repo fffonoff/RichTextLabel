@@ -1,6 +1,6 @@
 //
 //  UIColor+Compatibility.swift
-//  RichTextLabel
+//  RichTextLabelUIKit
 //
 //  Created by Roman Trifonov on 14/07/2023.
 //

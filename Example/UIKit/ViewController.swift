@@ -1,10 +1,11 @@
 //
 //  ViewController.swift
-//  RichTextLabel
+//  RichTextLabelUIKit
 //
 //  Created by Roman Trifonov on 13/07/2023.
 //
 
+import RichTextLabel
 import UIKit
 
 final class ViewController: UIViewController {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RichTextLabel: UILabel {
+public class RichTextLabel: UILabel {
 
     // MARK: - Types
 
@@ -22,7 +22,7 @@ class RichTextLabel: UILabel {
 
     // MARK: - Public Properties
 
-    var linkTapAction: ((URL) -> Void)?
+    public var linkTapAction: ((URL) -> Void)?
 
     // MARK: - Private Properties
 
@@ -74,7 +74,7 @@ class RichTextLabel: UILabel {
 
     // MARK: - Init
 
-    init() {
+    public init() {
         super.init(frame: .zero)
         isUserInteractionEnabled = true
     }
@@ -114,7 +114,7 @@ class RichTextLabel: UILabel {
 
 // MARK: - UIVIew
 
-extension RichTextLabel {
+public extension RichTextLabel {
     override var frame: CGRect {
         didSet { textContainer.size = bounds.size }
     }
@@ -131,7 +131,7 @@ extension RichTextLabel {
 
 // MARK: - UILabel
 
-extension RichTextLabel {
+public extension RichTextLabel {
     override var font: UIFont? {
         didSet {
             guard oldValue != font else { return }
@@ -225,7 +225,7 @@ extension RichTextLabel {
 
 // MARK: - UIResponder
 
-extension RichTextLabel {
+public extension RichTextLabel {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         isTouchMoved = false

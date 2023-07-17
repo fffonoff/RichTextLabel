@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  RichTextLabel
+//  RichTextLabelUIKit
 //
 //  Created by Roman Trifonov on 13/07/2023.
 //
