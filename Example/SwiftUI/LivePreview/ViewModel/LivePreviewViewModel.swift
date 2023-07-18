@@ -7,14 +7,21 @@
 
 import SwiftUI
 
-final class LivePreviewViewModel {
+final class LivePreviewViewModel: ObservableObject {
+
+    let attributes = AttributesDescriptionProvider()
 
     let text = """
     RichTextLabel supports all UILabel functionality as well as custom link handling: https://github.com/fffonoff/RichTextLabel
     """
 
-    let lineNumber = 0
-    let fontSize = 21.0
+    @Published var lineNumber: Double
+    @Published var fontSize: Double
     let textColor: UIColor? = .label
     let textAlignment = NSTextAlignment.natural
+
+    init() {
+        lineNumber = attributes.lineLimit.defaultValue
+        fontSize = attributes.fontSize.defaultValue
+    }
 }

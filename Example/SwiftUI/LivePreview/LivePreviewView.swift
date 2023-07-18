@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LivePreviewView: View {
 
-    private let viewModel = LivePreviewViewModel()
+    @StateObject private var viewModel = LivePreviewViewModel()
 
     @Environment(\.openURL) private var openURL
 
@@ -30,14 +30,26 @@ struct LivePreviewView: View {
                         openURL(url)
                     }
                 )
-                .lineLimit(viewModel.lineNumber)
+                .lineLimit(Int(viewModel.lineNumber))
                 .padding(EdgeInsets(top: inset / 2, leading: inset, bottom: inset, trailing: inset))
             }
             .frame(maxHeight: .infinity)
 
-            Color.clear
-                .frame(maxHeight: .infinity)
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 8) {
+                    textAttributes
+                }
+                .font(.system(size: 17))
+                .padding(.vertical, 16)
+                .padding(.horizontal, inset)
+            }
+            .frame(maxHeight: .infinity)
         }
+    }
+
+    @ViewBuilder private var textAttributes: some View {
+        NumericAttributeView(viewModel.attributes.lineLimit, value: $viewModel.lineNumber)
+        NumericAttributeView(viewModel.attributes.fontSize, value: $viewModel.fontSize)
     }
 }
 

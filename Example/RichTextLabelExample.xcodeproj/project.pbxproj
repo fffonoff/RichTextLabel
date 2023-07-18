@@ -12,6 +12,7 @@
 		300E6D192B5CA935007EF0B2 /* TextContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D182B5CA935007EF0B2 /* TextContainerView.swift */; };
 		300E6D1C2B5CA966007EF0B2 /* UIColor+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D1B2B5CA966007EF0B2 /* UIColor+Color.swift */; };
 		300E6D222B5CB18C007EF0B2 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D212B5CB18C007EF0B2 /* ExampleView.swift */; };
+		300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */; };
 		308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */; };
 		30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */; };
 		30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A52B5B404F00ABFE13 /* ContentView.swift */; };
@@ -21,6 +22,7 @@
 		30CAF2DB2B55F0AB00296DD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2DA2B55F0AB00296DD4 /* ViewController.swift */; };
 		30CAF2E32B55F0AB00296DD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CAF2E12B55F0AB00296DD4 /* LaunchScreen.storyboard */; };
 		30CBD1E22B5B304200F6729B /* RichTextLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 30CBD1E12B5B304200F6729B /* RichTextLabel */; };
+		30E01A072B5CC529002BC2D0 /* AttributesDescriptionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A062B5CC529002BC2D0 /* AttributesDescriptionProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,7 @@
 		300E6D1B2B5CA966007EF0B2 /* UIColor+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Color.swift"; sourceTree = "<group>"; };
 		300E6D212B5CB18C007EF0B2 /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		300E6D242B5CB3A3007EF0B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericAttributeView.swift; sourceTree = "<group>"; };
 		308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Compatibility.swift"; sourceTree = "<group>"; };
 		30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextLabelExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextLabelExampleApp.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		30CAF2DA2B55F0AB00296DD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		30CAF2E22B55F0AB00296DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30CAF2E42B55F0AB00296DD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30E01A062B5CC529002BC2D0 /* AttributesDescriptionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesDescriptionProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +71,9 @@
 			isa = PBXGroup;
 			children = (
 				300E6D1A2B5CA958007EF0B2 /* Extensions */,
+				30E01A052B5CC4ED002BC2D0 /* ViewModel */,
 				300E6D172B5CA928007EF0B2 /* Views */,
 				300E6D122B5CA87A007EF0B2 /* LivePreviewView.swift */,
-				300E6D152B5CA8FF007EF0B2 /* LivePreviewViewModel.swift */,
 			);
 			path = LivePreview;
 			sourceTree = "<group>";
@@ -77,6 +81,7 @@
 		300E6D172B5CA928007EF0B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */,
 				300E6D182B5CA935007EF0B2 /* TextContainerView.swift */,
 			);
 			path = Views;
@@ -140,6 +145,15 @@
 				30CAF2E42B55F0AB00296DD4 /* Info.plist */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		30E01A052B5CC4ED002BC2D0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				30E01A062B5CC529002BC2D0 /* AttributesDescriptionProvider.swift */,
+				300E6D152B5CA8FF007EF0B2 /* LivePreviewViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,10 +261,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30E01A072B5CC529002BC2D0 /* AttributesDescriptionProvider.swift in Sources */,
 				30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */,
 				300E6D222B5CB18C007EF0B2 /* ExampleView.swift in Sources */,
 				300E6D132B5CA87A007EF0B2 /* LivePreviewView.swift in Sources */,
 				300E6D162B5CA8FF007EF0B2 /* LivePreviewViewModel.swift in Sources */,
+				300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */,
 				30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */,
 				300E6D192B5CA935007EF0B2 /* TextContainerView.swift in Sources */,
 				300E6D1C2B5CA966007EF0B2 /* UIColor+Color.swift in Sources */,
