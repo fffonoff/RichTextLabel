@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */; };
+		30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */; };
+		30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A52B5B404F00ABFE13 /* ContentView.swift */; };
+		30B1F6B22B5B474D00ABFE13 /* RichTextLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 30B1F6B12B5B474D00ABFE13 /* RichTextLabel */; };
 		30CAF2D72B55F0AB00296DD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2D62B55F0AB00296DD4 /* AppDelegate.swift */; };
 		30CAF2D92B55F0AB00296DD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2D82B55F0AB00296DD4 /* SceneDelegate.swift */; };
 		30CAF2DB2B55F0AB00296DD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2DA2B55F0AB00296DD4 /* ViewController.swift */; };
@@ -17,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Compatibility.swift"; sourceTree = "<group>"; };
+		30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextLabelExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextLabelExampleApp.swift; sourceTree = "<group>"; };
+		30B1F6A52B5B404F00ABFE13 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		30B7DECB2B5B2F7A00515924 /* RichTextLabel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RichTextLabel; path = ..; sourceTree = "<group>"; };
 		30CAF2D32B55F0AB00296DD4 /* RichTextLabelUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextLabelUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30CAF2D62B55F0AB00296DD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +33,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		30B1F69E2B5B404F00ABFE13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30B1F6B22B5B474D00ABFE13 /* RichTextLabel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30CAF2D02B55F0AB00296DD4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,10 +60,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		30B1F6A22B5B404F00ABFE13 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */,
+				30B1F6A52B5B404F00ABFE13 /* ContentView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		30CAF2CA2B55F0AB00296DD4 = {
 			isa = PBXGroup;
 			children = (
 				30B7DECB2B5B2F7A00515924 /* RichTextLabel */,
+				30B1F6A22B5B404F00ABFE13 /* SwiftUI */,
 				30CAF2D52B55F0AB00296DD4 /* UIKit */,
 				30CAF2D42B55F0AB00296DD4 /* Products */,
 			);
@@ -59,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				30CAF2D32B55F0AB00296DD4 /* RichTextLabelUIKit.app */,
+				30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +104,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		30B1F6A02B5B404F00ABFE13 /* RichTextLabelExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30B1F6AC2B5B405000ABFE13 /* Build configuration list for PBXNativeTarget "RichTextLabelExample" */;
+			buildPhases = (
+				30B1F69D2B5B404F00ABFE13 /* Sources */,
+				30B1F69E2B5B404F00ABFE13 /* Frameworks */,
+				30B1F69F2B5B404F00ABFE13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RichTextLabelExample;
+			packageProductDependencies = (
+				30B1F6B12B5B474D00ABFE13 /* RichTextLabel */,
+			);
+			productName = RichTextLabelExample;
+			productReference = 30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		30CAF2D22B55F0AB00296DD4 /* RichTextLabelUIKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30CAF2E72B55F0AB00296DD4 /* Build configuration list for PBXNativeTarget "RichTextLabelUIKit" */;
@@ -109,6 +154,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					30B1F6A02B5B404F00ABFE13 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					30CAF2D22B55F0AB00296DD4 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -130,11 +178,19 @@
 			projectRoot = "";
 			targets = (
 				30CAF2D22B55F0AB00296DD4 /* RichTextLabelUIKit */,
+				30B1F6A02B5B404F00ABFE13 /* RichTextLabelExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		30B1F69F2B5B404F00ABFE13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30CAF2D12B55F0AB00296DD4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,6 +202,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		30B1F69D2B5B404F00ABFE13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */,
+				30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30CAF2CF2B55F0AB00296DD4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,6 +236,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		30B1F6AD2B5B405000ABFE13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96CGDK26W4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftUI/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = man.ro.RichTextLabelExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30B1F6AE2B5B405000ABFE13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96CGDK26W4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftUI/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = man.ro.RichTextLabelExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		30CAF2E52B55F0AB00296DD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -303,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = man.ro.RichTextLabel;
+				PRODUCT_BUNDLE_IDENTIFIER = man.ro.RichTextLabelLegacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -329,7 +450,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = man.ro.RichTextLabel;
+				PRODUCT_BUNDLE_IDENTIFIER = man.ro.RichTextLabelLegacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -340,6 +461,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		30B1F6AC2B5B405000ABFE13 /* Build configuration list for PBXNativeTarget "RichTextLabelExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30B1F6AD2B5B405000ABFE13 /* Debug */,
+				30B1F6AE2B5B405000ABFE13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		30CAF2CE2B55F0AB00296DD4 /* Build configuration list for PBXProject "RichTextLabelExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -361,6 +491,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		30B1F6B12B5B474D00ABFE13 /* RichTextLabel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RichTextLabel;
+		};
 		30CBD1E12B5B304200F6729B /* RichTextLabel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RichTextLabel;
