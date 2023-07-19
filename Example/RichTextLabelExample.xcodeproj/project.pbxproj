@@ -23,6 +23,9 @@
 		30CAF2E32B55F0AB00296DD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CAF2E12B55F0AB00296DD4 /* LaunchScreen.storyboard */; };
 		30CBD1E22B5B304200F6729B /* RichTextLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 30CBD1E12B5B304200F6729B /* RichTextLabel */; };
 		30E01A072B5CC529002BC2D0 /* AttributesDescriptionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A062B5CC529002BC2D0 /* AttributesDescriptionProvider.swift */; };
+		30E01A0C2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */; };
+		30E01A112B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A102B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift */; };
+		30E01A142B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A132B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		30CAF2E22B55F0AB00296DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30CAF2E42B55F0AB00296DD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30E01A062B5CC529002BC2D0 /* AttributesDescriptionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesDescriptionProvider.swift; sourceTree = "<group>"; };
+		30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiOptionAttributeView.swift; sourceTree = "<group>"; };
+		30E01A102B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitActionSheetHelper.swift; sourceTree = "<group>"; };
+		30E01A132B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Custom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				300E6D1A2B5CA958007EF0B2 /* Extensions */,
+				30E01A0F2B5CEC0F002BC2D0 /* Utils */,
 				30E01A052B5CC4ED002BC2D0 /* ViewModel */,
 				300E6D172B5CA928007EF0B2 /* Views */,
 				300E6D122B5CA87A007EF0B2 /* LivePreviewView.swift */,
@@ -81,6 +88,7 @@
 		300E6D172B5CA928007EF0B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */,
 				300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */,
 				300E6D182B5CA935007EF0B2 /* TextContainerView.swift */,
 			);
@@ -90,6 +98,7 @@
 		300E6D1A2B5CA958007EF0B2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				30E01A132B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift */,
 				300E6D1B2B5CA966007EF0B2 /* UIColor+Color.swift */,
 			);
 			path = Extensions;
@@ -154,6 +163,14 @@
 				300E6D152B5CA8FF007EF0B2 /* LivePreviewViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		30E01A0F2B5CEC0F002BC2D0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				30E01A102B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,10 +283,13 @@
 				300E6D222B5CB18C007EF0B2 /* ExampleView.swift in Sources */,
 				300E6D132B5CA87A007EF0B2 /* LivePreviewView.swift in Sources */,
 				300E6D162B5CA8FF007EF0B2 /* LivePreviewViewModel.swift in Sources */,
+				30E01A0C2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift in Sources */,
 				300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */,
 				30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */,
 				300E6D192B5CA935007EF0B2 /* TextContainerView.swift in Sources */,
+				30E01A142B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift in Sources */,
 				300E6D1C2B5CA966007EF0B2 /* UIColor+Color.swift in Sources */,
+				30E01A112B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
