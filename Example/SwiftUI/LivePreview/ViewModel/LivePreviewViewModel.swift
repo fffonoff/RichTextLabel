@@ -20,10 +20,18 @@ final class LivePreviewViewModel: ObservableObject {
     @Published var textColor: UIColor?
     @Published var textAlignment: NSTextAlignment
 
+    @Published var shadowColor: UIColor?
+    @Published var shadowXOffset: Double
+    @Published var shadowYOffset: Double
+
     init() {
         lineNumber = attributes.lineLimit.defaultValue
         fontSize = attributes.fontSize.defaultValue
         textColor = attributes.textColor.defaultValue
         textAlignment = attributes.textAlignment.defaultValue
+
+        shadowColor = attributes.shadowColor.defaultValue
+        shadowXOffset = attributes.shadowXOffset.defaultValue
+        shadowYOffset = attributes.shadowYOffset.defaultValue
     }
 }

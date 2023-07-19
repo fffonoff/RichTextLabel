@@ -32,6 +32,18 @@ struct AttributesDescriptionProvider {
             AttributeOption(title: "Justified", value: .justified)
         ]
     )
+
+    let shadowColor = MultiOptionAttributeDescription<UIColor?>(
+        title: "Text shadow color",
+        options: [
+            AttributeOption(title: "None", value: nil),
+            AttributeOption(title: "Label", value: .label.withAlphaComponent(0.3)),
+            AttributeOption(title: "Gray", value: .systemGray.withAlphaComponent(0.3)),
+            AttributeOption(title: "Orange", value: .systemOrange.withAlphaComponent(0.3))
+        ]
+    )
+    let shadowXOffset = NumericAttributeDescription(titleFormat: "Shadow xOffset: %.0f", range: -1...4, defaultValue: 1)
+    let shadowYOffset = NumericAttributeDescription(titleFormat: "Shadow yOffset: %.0f", range: -2...4, defaultValue: 1)
 }
 
 struct MultiOptionAttributeDescription<Value: Equatable> {

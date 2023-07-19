@@ -25,6 +25,11 @@ struct LivePreviewView: View {
                         richText.font = .systemFont(ofSize: viewModel.fontSize)
                         richText.textColor = viewModel.textColor
                         richText.textAlignment = viewModel.textAlignment
+                        richText.shadowColor = viewModel.shadowColor
+                        richText.shadowOffset = CGSize(
+                            width: viewModel.shadowXOffset,
+                            height: viewModel.shadowYOffset
+                        )
                     },
                     linkTapAction: { url in
                         openURL(url)
@@ -38,6 +43,7 @@ struct LivePreviewView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 8) {
                     textAttributes
+                    textShadowAttributes
                 }
                 .font(.system(size: 17))
                 .padding(.vertical, 16)
@@ -52,6 +58,14 @@ struct LivePreviewView: View {
         NumericAttributeView(viewModel.attributes.fontSize, value: $viewModel.fontSize)
         MultiOptionAttributeView(viewModel.attributes.textColor, selection: $viewModel.textColor)
         MultiOptionAttributeView(viewModel.attributes.textAlignment, selection: $viewModel.textAlignment)
+    }
+
+    @ViewBuilder private var textShadowAttributes: some View {
+        MultiOptionAttributeView(viewModel.attributes.shadowColor, selection: $viewModel.shadowColor)
+        if viewModel.shadowColor != nil {
+            NumericAttributeView(viewModel.attributes.shadowXOffset, value: $viewModel.shadowXOffset)
+            NumericAttributeView(viewModel.attributes.shadowYOffset, value: $viewModel.shadowYOffset)
+        }
     }
 }
 

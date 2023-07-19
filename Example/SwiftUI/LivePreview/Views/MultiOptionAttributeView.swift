@@ -48,12 +48,12 @@ struct MultiOptionAttributeView<Value: Equatable>: View {
                             selectedOption = option
                         }
                         action.isChecked = selectedOption?.value == option.value
-                        action.titleTextColor = option.value as? UIColor
+                        action.titleTextColor = (option.value as? UIColor)?.withAlphaComponent(1)
                         return action
                     }
                 )
             }
-            .foregroundColor((selectedOption?.value as? UIColor)?.color ?? .primary)
+            .foregroundColor((selectedOption?.value as? UIColor)?.withAlphaComponent(1).color ?? .primary)
         }
         .frame(height: 32)
     }
