@@ -50,6 +50,7 @@ struct LivePreviewView: View {
     @ViewBuilder private var textAttributes: some View {
         NumericAttributeView(viewModel.attributes.lineLimit, value: $viewModel.lineNumber)
         NumericAttributeView(viewModel.attributes.fontSize, value: $viewModel.fontSize)
+        MultiOptionAttributeView(viewModel.attributes.textColor, selection: $viewModel.textColor)
         MultiOptionAttributeView(viewModel.attributes.textAlignment, selection: $viewModel.textAlignment)
     }
 }

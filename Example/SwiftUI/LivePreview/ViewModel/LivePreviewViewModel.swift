@@ -17,12 +17,13 @@ final class LivePreviewViewModel: ObservableObject {
 
     @Published var lineNumber: Double
     @Published var fontSize: Double
-    let textColor: UIColor? = .label
+    @Published var textColor: UIColor?
     @Published var textAlignment: NSTextAlignment
 
     init() {
         lineNumber = attributes.lineLimit.defaultValue
         fontSize = attributes.fontSize.defaultValue
+        textColor = attributes.textColor.defaultValue
         textAlignment = attributes.textAlignment.defaultValue
     }
 }
