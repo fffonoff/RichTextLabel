@@ -61,6 +61,7 @@ struct LivePreviewView: View {
     }
 
     @ViewBuilder private var textShadowAttributes: some View {
+        AttributeGroupTitleView(viewModel.attributes.textShadowGroupTitle)
         MultiOptionAttributeView(viewModel.attributes.shadowColor, selection: $viewModel.shadowColor)
         if viewModel.shadowColor != nil {
             NumericAttributeView(viewModel.attributes.shadowXOffset, value: $viewModel.shadowXOffset)

@@ -33,6 +33,7 @@ struct AttributesDescriptionProvider {
         ]
     )
 
+    let textShadowGroupTitle = "Text shadow"
     let shadowColor = MultiOptionAttributeDescription<UIColor?>(
         title: "Text shadow color",
         options: [
