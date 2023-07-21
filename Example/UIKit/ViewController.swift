@@ -55,6 +55,16 @@ final class ViewController: UIViewController {
         textLabel.textColor = .labelCompat
         textLabel.textAlignment = .natural // just an example of use, the default value is already .natural
 
+        if #available(iOS 13.0, *) {
+            textLabel.linkTextColor = .link
+        } else {
+            textLabel.linkTextColor = .systemBlue
+        }
+        textLabel.linkHighlightColor = #colorLiteral(red: 0.68, green: 0.85, blue: 0.9, alpha: 0.35)
+        textLabel.linkHighlightCornerRadius = 6
+        textLabel.linkUnderlineStyle = .single
+        textLabel.isPersistentLinkUnderline = false
+
         textLabel.linkTapAction = { url in
             UIApplication.shared.open(url)
         }

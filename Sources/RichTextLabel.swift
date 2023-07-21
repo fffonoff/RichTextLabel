@@ -16,23 +16,49 @@ public class RichTextLabel: UILabel {
         let range: NSRange
     }
 
-    // MARK: - Constants
-
-    private static let defaultUnderlineStyle = NSUnderlineStyle.single
-
     // MARK: - Public Properties
 
     public var linkTapAction: ((URL) -> Void)?
 
-    // MARK: - Private Properties
+    public var linkTextColor: UIColor? = .linkCompat {
+        didSet {
+            guard oldValue != linkTextColor else { return }
+            updateAttributedText(with: text)
+        }
+    }
 
-    private lazy var layoutManager: NSLayoutManager = {
-        let layoutManager = NSLayoutManager()
+    public var linkHighlightColor: UIColor? = #colorLiteral(red: 0.68, green: 0.85, blue: 0.9, alpha: 0.35) {
+        didSet {
+            guard oldValue != linkHighlightColor else { return }
+            linksHighlightLayer.fillColor = linkHighlightColor?.cgColor
+        }
+    }
+
+    public var linkHighlightCornerRadius: CGFloat = 6
+
+    public var linkUnderlineStyle: NSUnderlineStyle = .single {
+        didSet {
+            guard oldValue != linkUnderlineStyle else { return }
+            updateAttributedText(with: text)
+        }
+    }
+
+    public var isPersistentLinkUnderline: Bool {
+        get { layoutManager.isPersistentLinkUnderline }
+        set {
+            guard newValue != isPersistentLinkUnderline else { return }
+            layoutManager.isPersistentLinkUnderline = newValue
+            setNeedsDisplay()
+        }
+    }
+
+    private(set) lazy var layoutManager: RichTextLabelLayoutManager = {
+        let layoutManager = RichTextLabelLayoutManager()
         layoutManager.addTextContainer(textContainer)
         return layoutManager
     }()
 
-    private lazy var textContainer: NSTextContainer = {
+    private(set) lazy var textContainer: NSTextContainer = {
         let textContainer = NSTextContainer()
         textContainer.lineBreakMode = lineBreakMode
         textContainer.lineFragmentPadding = 0
@@ -40,10 +66,28 @@ public class RichTextLabel: UILabel {
         return textContainer
     }()
 
+    var textContainerOrigin: CGPoint {
+        let textHeight = ceil(layoutManager.usedRect(for: textContainer).height)
+        let yOrigin = textHeight < bounds.height ? (bounds.height - textHeight) / 2 : 0
+
+        return CGPoint(x: textContainer.lineFragmentPadding, y: yOrigin)
+    }
+
+    // MARK: - Private Properties
+
     private lazy var textStorage: NSTextStorage = {
         let textStorage = NSTextStorage()
         textStorage.addLayoutManager(layoutManager)
         return textStorage
+    }()
+
+    private lazy var linksHighlightLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.frame = frame
+        layer.bounds = bounds
+        layer.fillColor = linkHighlightColor?.cgColor
+        layer.opacity = 0
+        return layer
     }()
 
     private var textAttributes: [NSAttributedString.Key: Any] {
@@ -72,6 +116,19 @@ public class RichTextLabel: UILabel {
     private var links: [Link] = []
     private var isTouchMoved = false
 
+    private var selectedLinkRange = NSRange() {
+        didSet {
+            guard oldValue != selectedLinkRange else { return }
+
+            layoutManager.selectedLinkRange = selectedLinkRange
+            highlightLink(in: selectedLinkRange)
+            setNeedsDisplay()
+        }
+    }
+
+    private let linkHighlightFadeInDuration: TimeInterval = 0.2
+    private let linkHighlightFadeOutDuration: TimeInterval = 0.3
+
     // MARK: - Init
 
     public init() {
@@ -86,12 +143,6 @@ public class RichTextLabel: UILabel {
 
     // MARK: - Private Methods
 
-    private func textOrigin() -> CGPoint {
-        var textRect = layoutManager.usedRect(for: textContainer)
-        textRect.size = CGSize(width: ceil(textRect.size.width), height: ceil(textRect.size.height))
-        return textRect.height < bounds.height ? CGPoint(x: 0, y: (bounds.height - textRect.height) / 2) : .zero
-    }
-
     private func updateAttributedText(with text: String?) {
         guard let text else {
             attributedText = NSAttributedString()
@@ -105,10 +156,34 @@ public class RichTextLabel: UILabel {
 
             links.append(Link(url: url, range: match.range))
             mutableText.addAttribute(.link, value: url, range: match.range)
-            mutableText.addAttribute(.underlineStyle, value: Self.defaultUnderlineStyle.rawValue, range: match.range)
+            let linkTextColor = linkTextColor ?? .linkCompat
+            mutableText.addAttribute(.foregroundColor, value: linkTextColor, range: match.range)
+            mutableText.addAttribute(.underlineColor, value: linkTextColor, range: match.range)
+            mutableText.addAttribute(.underlineStyle, value: linkUnderlineStyle.rawValue, range: match.range)
         }
 
         attributedText = mutableText
+    }
+
+    private func highlightLink(in linkRange: NSRange) {
+        guard linkHighlightColor != nil else { return }
+
+        let isVisible = linkRange.length > 0
+        if isVisible {
+            let path = UIBezierPath()
+            for rect in layoutManager.usedRectsForGlyphs(in: linkRange) {
+                let insetRect = rect.insetBy(dx: -linkHighlightCornerRadius, dy: -2)
+                path.append(UIBezierPath(roundedRect: insetRect, cornerRadius: linkHighlightCornerRadius))
+            }
+
+            linksHighlightLayer.path = path.cgPath
+        }
+
+        CATransaction.begin()
+        let duration = isVisible ? linkHighlightFadeInDuration : linkHighlightFadeOutDuration
+        CATransaction.setAnimationDuration(duration)
+        linksHighlightLayer.opacity = isVisible ? 1 : 0
+        CATransaction.commit()
     }
 }
 
@@ -123,9 +198,19 @@ public extension RichTextLabel {
         didSet { textContainer.size = bounds.size }
     }
 
+    override func didMoveToSuperview() {
+        linksHighlightLayer.removeFromSuperlayer()
+        if let superview {
+            /// we utilize superview's layer to draw links highlight under a text
+            superview.layer.insertSublayer(linksHighlightLayer, below: layer)
+        }
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
+
         textContainer.size = bounds.size
+        linksHighlightLayer.frame = frame
     }
 }
 
@@ -216,7 +301,7 @@ public extension RichTextLabel {
 
     override func drawText(in rect: CGRect) {
         let glyphRange = layoutManager.glyphRange(for: textContainer)
-        let textOrigin = textOrigin()
+        let textOrigin = textContainerOrigin
 
         layoutManager.drawBackground(forGlyphRange: glyphRange, at: textOrigin)
         layoutManager.drawGlyphs(forGlyphRange: glyphRange, at: textOrigin)
@@ -227,33 +312,58 @@ public extension RichTextLabel {
 
 public extension RichTextLabel {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
         isTouchMoved = false
+
+        if let touchLocation = touches.randomElement()?.location(in: self), let touchedLink = link(at: touchLocation) {
+            selectedLinkRange = touchedLink.range
+        } else {
+            super.touchesBegan(touches, with: event)
+        }
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
+
         isTouchMoved = true
+        selectedLinkRange = NSRange()
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        guard !isTouchMoved,
-              let touchLocation = touches.randomElement()?.location(in: self),
-              let touchedLink = link(at: touchLocation)
-        else { return }
 
-        linkTapAction?(touchedLink.url)
+        selectedLinkRange = NSRange()
+        if !isTouchMoved,
+           let touchLocation = touches.randomElement()?.location(in: self),
+           let touchedLink = link(at: touchLocation) {
+            linkTapAction?(touchedLink.url)
+        }
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        selectedLinkRange = NSRange()
     }
 
     private func link(at location: CGPoint) -> Link? {
         guard textStorage.length > 0 else { return nil }
 
-        let textOrigin = textOrigin()
+        let textOrigin = textContainerOrigin
         let correctLocation = CGPoint(x: location.x - textOrigin.x, y: location.y - textOrigin.y)
         let touchedGlyphIndex = layoutManager.glyphIndex(for: correctLocation, in: textContainer)
         let lineUsedRect = layoutManager.lineFragmentUsedRect(forGlyphAt: touchedGlyphIndex, effectiveRange: nil)
 
         return lineUsedRect.contains(location) ? links.first(where: { $0.range.contains(touchedGlyphIndex) }) : nil
+    }
+}
+
+// MARK: - UITraitEnvironment
+
+public extension RichTextLabel {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13, *), traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            linksHighlightLayer.fillColor = linkHighlightColor?.cgColor
+        }
     }
 }

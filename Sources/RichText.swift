@@ -125,6 +125,31 @@ public struct RichTextLabelProxy {
         nonmutating set { originalView.lineBreakMode = newValue }
     }
 
+    public var linkTextColor: UIColor? {
+        get { originalView.linkTextColor }
+        nonmutating set { originalView.linkTextColor = newValue }
+    }
+
+    public var linkHighlightColor: UIColor? {
+        get { originalView.linkHighlightColor }
+        nonmutating set { originalView.linkHighlightColor = newValue }
+    }
+
+    public var linkHighlightCornerRadius: Double {
+        get { originalView.linkHighlightCornerRadius }
+        nonmutating set { originalView.linkHighlightCornerRadius = newValue }
+    }
+
+    public var linkUnderlineStyle: NSUnderlineStyle {
+        get { originalView.linkUnderlineStyle }
+        nonmutating set { originalView.linkUnderlineStyle = newValue }
+    }
+
+    public var isPersistentLinkUnderline: Bool {
+        get { originalView.isPersistentLinkUnderline }
+        nonmutating set { originalView.isPersistentLinkUnderline = newValue }
+    }
+
     public var shadowColor: UIColor? {
         get { originalView.shadowColor }
         nonmutating set { originalView.shadowColor = newValue }

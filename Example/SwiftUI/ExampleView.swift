@@ -24,6 +24,11 @@ struct ExampleView: View {
                     richText.font = .systemFont(ofSize: 21)
                     richText.textColor = .label
                     richText.textAlignment = .natural // just an example of use, the default value is already .natural
+                    richText.linkTextColor = .link
+                    richText.linkHighlightColor = #colorLiteral(red: 0.68, green: 0.85, blue: 0.9, alpha: 0.35)
+                    richText.linkHighlightCornerRadius = 6
+                    richText.linkUnderlineStyle = .single
+                    richText.isPersistentLinkUnderline = false
                 },
                 linkTapAction: { url in
                     openURL(url)
