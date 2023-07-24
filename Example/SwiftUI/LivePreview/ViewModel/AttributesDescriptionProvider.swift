@@ -33,6 +33,56 @@ struct AttributesDescriptionProvider {
         ]
     )
 
+    let linksDecorationsGroupTitle = "Links decorations"
+    let linkTextColor = MultiOptionAttributeDescription<UIColor?>(
+        title: "Link color",
+        options: [
+            AttributeOption(title: "Default", value: .link),
+            AttributeOption(title: "Primary", value: .label),
+            AttributeOption(title: "Teal", value: .systemTeal),
+            AttributeOption(title: "Green", value: .systemGreen),
+            AttributeOption(title: "Orange", value: .systemOrange),
+            AttributeOption(title: "Red", value: .systemRed)
+        ]
+    )
+    let linkHighlightColor = MultiOptionAttributeDescription<UIColor?>(
+        title: "Highlight color",
+        options: [
+            AttributeOption(title: "Default", value: UIColor(red: 0.68, green: 0.85, blue: 0.9, alpha: 0.35)),
+            AttributeOption(title: "None", value: nil),
+            AttributeOption(title: "Blue", value: .systemBlue.withAlphaComponent(0.2)),
+            AttributeOption(title: "Teal", value: .systemTeal.withAlphaComponent(0.2)),
+            AttributeOption(title: "Green", value: .systemGreen.withAlphaComponent(0.2)),
+            AttributeOption(title: "Orange", value: .systemOrange.withAlphaComponent(0.2))
+        ]
+    )
+    let linkHighlightCornerRadius = NumericAttributeDescription(
+        titleFormat: "Highlight corner radius: %.0f",
+        range: 0...12,
+        defaultValue: 6
+    )
+    let linkUnderlineType = MultiOptionAttributeDescription<NSUnderlineStyle>(
+        title: "Underline type",
+        options: [
+            AttributeOption(title: "Single", value: .single),
+            AttributeOption(title: "Thick", value: .thick),
+            AttributeOption(title: "Double", value: .double),
+            AttributeOption(title: "None", value: [])
+        ]
+    )
+    let linkUnderlinePattern = MultiOptionAttributeDescription<NSUnderlineStyle>(
+        title: "Underline pattern",
+        options: [
+            AttributeOption(title: "Line", value: []),
+            AttributeOption(title: "Pattern dot", value: .patternDot),
+            AttributeOption(title: "Pattern dash", value: .patternDash),
+            AttributeOption(title: "Pattern dash dot", value: .patternDashDot),
+            AttributeOption(title: "Pattern dash dot dot", value: .patternDashDotDot)
+        ]
+    )
+    let persistentUnderline = BooleanAttributeDescription(title: "Persistent underline", defaultValue: true)
+    let underlineByWord = BooleanAttributeDescription(title: "Underline by word", defaultValue: false)
+
     let textShadowGroupTitle = "Text shadow"
     let shadowColor = MultiOptionAttributeDescription<UIColor?>(
         title: "Text shadow color",
@@ -43,8 +93,21 @@ struct AttributesDescriptionProvider {
             AttributeOption(title: "Orange", value: .systemOrange.withAlphaComponent(0.3))
         ]
     )
-    let shadowXOffset = NumericAttributeDescription(titleFormat: "Shadow xOffset: %.0f", range: -1...4, defaultValue: 1)
-    let shadowYOffset = NumericAttributeDescription(titleFormat: "Shadow yOffset: %.0f", range: -2...4, defaultValue: 1)
+    let shadowXOffset = NumericAttributeDescription(
+        titleFormat: "Shadow xOffset: %.0f",
+        range: -1...4,
+        defaultValue: 1
+    )
+    let shadowYOffset = NumericAttributeDescription(
+        titleFormat: "Shadow yOffset: %.0f",
+        range: -2...4,
+        defaultValue: 1
+    )
+}
+
+struct BooleanAttributeDescription {
+    let title: String
+    let defaultValue: Bool
 }
 
 struct MultiOptionAttributeDescription<Value: Equatable> {

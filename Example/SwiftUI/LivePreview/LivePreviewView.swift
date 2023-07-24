@@ -25,6 +25,11 @@ struct LivePreviewView: View {
                         richText.font = .systemFont(ofSize: viewModel.fontSize)
                         richText.textColor = viewModel.textColor
                         richText.textAlignment = viewModel.textAlignment
+                        richText.linkTextColor = viewModel.linkTextColor
+                        richText.linkHighlightColor = viewModel.linkHighlightColor
+                        richText.linkHighlightCornerRadius = viewModel.linkHighlightCornerRadius
+                        richText.linkUnderlineStyle = viewModel.linkUnderlineStyle
+                        richText.isPersistentLinkUnderline = viewModel.isPersistentLinkUnderline
                         richText.shadowColor = viewModel.shadowColor
                         richText.shadowOffset = CGSize(
                             width: viewModel.shadowXOffset,
@@ -43,6 +48,7 @@ struct LivePreviewView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 8) {
                     textAttributes
+                    linksDecorations
                     textShadowAttributes
                 }
                 .font(.system(size: 17))
@@ -58,6 +64,25 @@ struct LivePreviewView: View {
         NumericAttributeView(viewModel.attributes.fontSize, value: $viewModel.fontSize)
         MultiOptionAttributeView(viewModel.attributes.textColor, selection: $viewModel.textColor)
         MultiOptionAttributeView(viewModel.attributes.textAlignment, selection: $viewModel.textAlignment)
+    }
+
+    @ViewBuilder private var linksDecorations: some View {
+        AttributeGroupTitleView(viewModel.attributes.linksDecorationsGroupTitle)
+        MultiOptionAttributeView(viewModel.attributes.linkTextColor, selection: $viewModel.linkTextColor)
+        MultiOptionAttributeView(viewModel.attributes.linkHighlightColor, selection: $viewModel.linkHighlightColor)
+        NumericAttributeView(
+            viewModel.attributes.linkHighlightCornerRadius,
+            value: $viewModel.linkHighlightCornerRadius
+        )
+        MultiOptionAttributeView(viewModel.attributes.linkUnderlineType, selection: $viewModel.linkUnderlineType)
+        if !viewModel.linkUnderlineType.isEmpty {
+            MultiOptionAttributeView(
+                viewModel.attributes.linkUnderlinePattern,
+                selection: $viewModel.linkUnderlinePattern
+            )
+            BooleanAttributeView(viewModel.attributes.persistentUnderline, isOn: $viewModel.isPersistentLinkUnderline)
+            BooleanAttributeView(viewModel.attributes.underlineByWord, isOn: $viewModel.underlineByWord)
+        }
     }
 
     @ViewBuilder private var textShadowAttributes: some View {

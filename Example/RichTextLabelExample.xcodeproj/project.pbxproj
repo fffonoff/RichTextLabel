@@ -27,6 +27,7 @@
 		30E01A0C2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */; };
 		30E01A112B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A102B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift */; };
 		30E01A142B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A132B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift */; };
+		30F679912B5E1C7D00B6F829 /* BooleanAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F679902B5E1C7D00B6F829 /* BooleanAttributeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiOptionAttributeView.swift; sourceTree = "<group>"; };
 		30E01A102B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitActionSheetHelper.swift; sourceTree = "<group>"; };
 		30E01A132B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Custom.swift"; sourceTree = "<group>"; };
+		30F679902B5E1C7D00B6F829 /* BooleanAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanAttributeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				3029C6222B5E143E00836522 /* AttributeGroupTitleView.swift */,
+				30F679902B5E1C7D00B6F829 /* BooleanAttributeView.swift */,
 				30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */,
 				300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */,
 				300E6D182B5CA935007EF0B2 /* TextContainerView.swift */,
@@ -283,6 +286,7 @@
 			files = (
 				3029C6232B5E143E00836522 /* AttributeGroupTitleView.swift in Sources */,
 				30E01A072B5CC529002BC2D0 /* AttributesDescriptionProvider.swift in Sources */,
+				30F679912B5E1C7D00B6F829 /* BooleanAttributeView.swift in Sources */,
 				30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */,
 				300E6D222B5CB18C007EF0B2 /* ExampleView.swift in Sources */,
 				300E6D132B5CA87A007EF0B2 /* LivePreviewView.swift in Sources */,
