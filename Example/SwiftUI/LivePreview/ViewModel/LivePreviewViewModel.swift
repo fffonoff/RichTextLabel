@@ -19,6 +19,7 @@ final class LivePreviewViewModel: ObservableObject {
     @Published var fontSize: Double
     @Published var textColor: UIColor?
     @Published var textAlignment: NSTextAlignment
+    @Published var lineHeightMultiplier: Double
 
     @Published var linkTextColor: UIColor?
     @Published var linkHighlightColor: UIColor?
@@ -38,6 +39,7 @@ final class LivePreviewViewModel: ObservableObject {
         fontSize = attributes.fontSize.defaultValue
         textColor = attributes.textColor.defaultValue
         textAlignment = attributes.textAlignment.defaultValue
+        lineHeightMultiplier = attributes.lineHeightMultiplier.defaultValue
 
         linkTextColor = attributes.linkTextColor.defaultValue
         linkHighlightColor = attributes.linkHighlightColor.defaultValue

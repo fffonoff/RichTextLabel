@@ -32,6 +32,12 @@ struct AttributesDescriptionProvider {
             AttributeOption(title: "Justified", value: .justified)
         ]
     )
+    let lineHeightMultiplier = NumericAttributeDescription(
+        titleFormat: "Line height: %.2f",
+        range: 1...2,
+        step: 0.05,
+        defaultValue: 1
+    )
 
     let linksDecorationsGroupTitle = "Links decorations"
     let linkTextColor = MultiOptionAttributeDescription<UIColor?>(
@@ -130,5 +136,6 @@ struct MultiOptionAttributeDescription<Value: Equatable> {
 struct NumericAttributeDescription {
     let titleFormat: String
     let range: ClosedRange<Double>
+    var step: Double = 1
     let defaultValue: Double
 }

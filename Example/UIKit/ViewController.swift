@@ -54,6 +54,7 @@ final class ViewController: UIViewController {
         textLabel.font = .systemFont(ofSize: 21)
         textLabel.textColor = .labelCompat
         textLabel.textAlignment = .natural // just an example of use, the default value is already .natural
+        textLabel.lineHeightMultiplier = 1.15
 
         if #available(iOS 13.0, *) {
             textLabel.linkTextColor = .link

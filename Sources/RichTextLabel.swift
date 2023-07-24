@@ -20,6 +20,13 @@ public class RichTextLabel: UILabel {
 
     public var linkTapAction: ((URL) -> Void)?
 
+    public var lineHeightMultiplier: CGFloat = 1 {
+        didSet {
+            guard oldValue != lineHeightMultiplier else { return }
+            updateAttributedText(with: text)
+        }
+    }
+
     public var linkTextColor: UIColor? = .linkCompat {
         didSet {
             guard oldValue != linkTextColor else { return }
@@ -93,6 +100,7 @@ public class RichTextLabel: UILabel {
     private var textAttributes: [NSAttributedString.Key: Any] {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = textAlignment
+        paragraphStyle.lineHeightMultiple = lineHeightMultiplier
         var attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: paragraphStyle]
 
         if let font {

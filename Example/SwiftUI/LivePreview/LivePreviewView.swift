@@ -25,6 +25,7 @@ struct LivePreviewView: View {
                         richText.font = .systemFont(ofSize: viewModel.fontSize)
                         richText.textColor = viewModel.textColor
                         richText.textAlignment = viewModel.textAlignment
+                        richText.lineHeightMultiplier = viewModel.lineHeightMultiplier
                         richText.linkTextColor = viewModel.linkTextColor
                         richText.linkHighlightColor = viewModel.linkHighlightColor
                         richText.linkHighlightCornerRadius = viewModel.linkHighlightCornerRadius
@@ -64,6 +65,7 @@ struct LivePreviewView: View {
         NumericAttributeView(viewModel.attributes.fontSize, value: $viewModel.fontSize)
         MultiOptionAttributeView(viewModel.attributes.textColor, selection: $viewModel.textColor)
         MultiOptionAttributeView(viewModel.attributes.textAlignment, selection: $viewModel.textAlignment)
+        NumericAttributeView(viewModel.attributes.lineHeightMultiplier, value: $viewModel.lineHeightMultiplier)
     }
 
     @ViewBuilder private var linksDecorations: some View {

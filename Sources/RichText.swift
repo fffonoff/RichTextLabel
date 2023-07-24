@@ -125,6 +125,11 @@ public struct RichTextLabelProxy {
         nonmutating set { originalView.lineBreakMode = newValue }
     }
 
+    public var lineHeightMultiplier: Double {
+        get { originalView.lineHeightMultiplier }
+        nonmutating set { originalView.lineHeightMultiplier = newValue }
+    }
+
     public var linkTextColor: UIColor? {
         get { originalView.linkTextColor }
         nonmutating set { originalView.linkTextColor = newValue }
