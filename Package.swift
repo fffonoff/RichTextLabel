@@ -32,7 +32,16 @@ let package = Package(
     products: [
         .library(name: "RichTextLabel", targets: ["RichTextLabel"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/Cocoanetics/DTCoreText", revision: "1.6.26")
+    ],
     targets: [
-        .target(name: "RichTextLabel", path: "Sources")
+        .target(
+            name: "RichTextLabel",
+            dependencies: [
+                .product(name: "DTCoreText", package: "DTCoreText")
+            ],
+            path: "Sources"
+        )
     ]
 )

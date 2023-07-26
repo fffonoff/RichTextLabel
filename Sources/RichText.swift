@@ -32,7 +32,7 @@ public struct RichText: View {
 
     public init(
         _ text: String? = nil,
-        textProcessor: RichTextProcessor = TextWithHtmlProcessor(),
+        textProcessor: RichTextProcessor = DTTextWithHtmlProcessor(),
         configure: ((RichTextLabelProxy) -> Void)? = nil,
         linkTapAction: ((URL) -> Void)? = nil
     ) {
