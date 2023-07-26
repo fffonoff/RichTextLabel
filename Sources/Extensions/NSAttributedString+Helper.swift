@@ -15,3 +15,9 @@ extension NSAttributedString {
         return attribute(attrName, at: location, effectiveRange: nil)
     }
 }
+
+extension NSMutableAttributedString {
+    func addFullRangeAttribute(_ name: NSAttributedString.Key, value: Any) {
+        addAttribute(name, value: value, range: range)
+    }
+}

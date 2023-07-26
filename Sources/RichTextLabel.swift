@@ -18,19 +18,28 @@ public class RichTextLabel: UILabel {
 
     // MARK: - Public Properties
 
+    public var textProcessor: RichTextProcessor {
+        didSet {
+            processText()
+        }
+    }
+
     public var linkTapAction: ((URL) -> Void)?
 
     public var lineHeightMultiplier: CGFloat = 1 {
         didSet {
             guard oldValue != lineHeightMultiplier else { return }
-            updateAttributedText(with: text)
+            textProcessor.update(lineHeightMultiplier: lineHeightMultiplier, in: textStorage)
+            invalidateIntrinsicContentSize()
+            setNeedsDisplay()
         }
     }
 
     public var linkTextColor: UIColor? = .linkCompat {
         didSet {
             guard oldValue != linkTextColor else { return }
-            updateAttributedText(with: text)
+            textProcessor.update(linkTextColor: linkTextColor ?? textColor ?? super.textColor, in: textStorage)
+            setNeedsDisplay()
         }
     }
 
@@ -46,7 +55,8 @@ public class RichTextLabel: UILabel {
     public var linkUnderlineStyle: NSUnderlineStyle = .single {
         didSet {
             guard oldValue != linkUnderlineStyle else { return }
-            updateAttributedText(with: text)
+            textProcessor.update(linksUnderlineStyle: linkUnderlineStyle, in: textStorage)
+            setNeedsDisplay()
         }
     }
 
@@ -97,30 +107,6 @@ public class RichTextLabel: UILabel {
         return layer
     }()
 
-    private var textAttributes: [NSAttributedString.Key: Any] {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = textAlignment
-        paragraphStyle.lineHeightMultiple = lineHeightMultiplier
-        var attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: paragraphStyle]
-
-        if let font {
-            attributes[.font] = font
-        }
-        if let textColor {
-            attributes[.foregroundColor] = textColor
-        }
-        if let shadowColor {
-            let shadow = NSShadow()
-            shadow.shadowColor = shadowColor
-            shadow.shadowOffset = shadowOffset
-            attributes[.shadow] = shadow
-        }
-
-        return attributes
-    }
-
-    private lazy var linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-
     private var links: [Link] = []
     private var isTouchMoved = false
 
@@ -139,7 +125,8 @@ public class RichTextLabel: UILabel {
 
     // MARK: - Init
 
-    public init() {
+    public init(textProcessor: RichTextProcessor = PlainTextProcessor()) {
+        self.textProcessor = textProcessor
         super.init(frame: .zero)
         isUserInteractionEnabled = true
     }
@@ -151,26 +138,15 @@ public class RichTextLabel: UILabel {
 
     // MARK: - Private Methods
 
-    private func updateAttributedText(with text: String?) {
-        guard let text else {
-            attributedText = NSAttributedString()
-            return
+    private func extractLinks(from attributedText: NSAttributedString?) -> [Link] {
+        var links = [Link]()
+        guard let attributedText else { return links }
+
+        attributedText.enumerateAttribute(.link, in: attributedText.range) { value, range, _ in
+            guard let url = value as? URL else { return }
+            links.append(Link(url: url, range: range))
         }
-
-        let mutableText = NSMutableAttributedString(string: text, attributes: textAttributes)
-        let matches = linkDetector?.matches(in: mutableText.string, range: NSRange(location: 0, length: mutableText.string.count))
-        matches?.forEach { match in
-            guard let url = match.url else { return }
-
-            links.append(Link(url: url, range: match.range))
-            mutableText.addAttribute(.link, value: url, range: match.range)
-            let linkTextColor = linkTextColor ?? .linkCompat
-            mutableText.addAttribute(.foregroundColor, value: linkTextColor, range: match.range)
-            mutableText.addAttribute(.underlineColor, value: linkTextColor, range: match.range)
-            mutableText.addAttribute(.underlineStyle, value: linkUnderlineStyle.rawValue, range: match.range)
-        }
-
-        attributedText = mutableText
+        return links
     }
 
     private func highlightLink(in linkRange: NSRange) {
@@ -228,7 +204,9 @@ public extension RichTextLabel {
     override var font: UIFont? {
         didSet {
             guard oldValue != font else { return }
-            updateAttributedText(with: text)
+            textProcessor.update(font: font ?? super.font, in: textStorage)
+            invalidateIntrinsicContentSize()
+            setNeedsDisplay()
         }
     }
 
@@ -236,6 +214,21 @@ public extension RichTextLabel {
         didSet {
             guard oldValue != lineBreakMode else { return }
             textContainer.lineBreakMode = lineBreakMode
+            setNeedsDisplay()
+        }
+    }
+
+    override var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy {
+        get {
+            if #available(iOS 14, *) {
+                return super.lineBreakStrategy
+            }
+            return []
+        }
+        set {
+            guard #available(iOS 14, *), newValue != lineBreakStrategy else { return }
+            super.lineBreakStrategy = lineBreakStrategy
+            textProcessor.update(lineBreakStrategy: lineBreakStrategy, in: textStorage)
             setNeedsDisplay()
         }
     }
@@ -251,38 +244,47 @@ public extension RichTextLabel {
     override var shadowColor: UIColor? {
         didSet {
             guard oldValue != shadowColor else { return }
-            updateAttributedText(with: text)
+            textProcessor.updateTextShadow(using: shadowColor, offset: shadowOffset, in: textStorage)
+            setNeedsDisplay()
         }
     }
 
     override var shadowOffset: CGSize {
         didSet {
             guard oldValue != shadowOffset else { return }
-            updateAttributedText(with: text)
+            textProcessor.updateTextShadow(using: shadowColor, offset: shadowOffset, in: textStorage)
+            setNeedsDisplay()
         }
     }
 
     override var textAlignment: NSTextAlignment {
         didSet {
             guard oldValue != textAlignment else { return }
-            updateAttributedText(with: text)
+            textProcessor.update(textAlignment: textAlignment, in: textStorage)
+            setNeedsDisplay()
         }
     }
 
     override var textColor: UIColor? {
         didSet {
             guard oldValue != textColor else { return }
-            updateAttributedText(with: text)
+            textProcessor.update(textColor: textColor ?? super.textColor, oldValue: oldValue, in: textStorage)
+            setNeedsDisplay()
         }
     }
 
     override var text: String? {
-        didSet { updateAttributedText(with: text) }
+        didSet {
+            guard oldValue != text else { return }
+            processText()
+        }
     }
 
     override var attributedText: NSAttributedString? {
-        didSet {
-            textStorage.setAttributedString(attributedText ?? NSAttributedString())
+        get { textStorage }
+        set {
+            links = extractLinks(from: newValue)
+            textStorage.setAttributedString(decorateAttributedText(newValue) ?? NSAttributedString())
             invalidateIntrinsicContentSize()
         }
     }
@@ -313,6 +315,36 @@ public extension RichTextLabel {
 
         layoutManager.drawBackground(forGlyphRange: glyphRange, at: textOrigin)
         layoutManager.drawGlyphs(forGlyphRange: glyphRange, at: textOrigin)
+    }
+
+    private func processText() {
+        guard let text, !text.isEmpty else {
+            attributedText = nil
+            return
+        }
+
+        attributedText = textProcessor.attributedText(from: text, withTextColor: textColor ?? super.textColor)
+        setNeedsDisplay()
+    }
+
+    private func decorateAttributedText(_ attributedText: NSAttributedString?) -> NSAttributedString? {
+        guard let attributedText else {
+            return nil
+        }
+
+        let mutableAttributedText = NSMutableAttributedString(attributedString: attributedText)
+        textProcessor.update(font: font ?? super.font, in: mutableAttributedText)
+        textProcessor.update(textColor: textColor ?? super.textColor, oldValue: nil, in: mutableAttributedText)
+        textProcessor.update(textAlignment: textAlignment, in: mutableAttributedText)
+        if #available(iOS 14, *) {
+            textProcessor.update(lineBreakStrategy: lineBreakStrategy, in: mutableAttributedText)
+        }
+        textProcessor.update(lineHeightMultiplier: lineHeightMultiplier, in: mutableAttributedText)
+        textProcessor.update(linkTextColor: linkTextColor ?? textColor ?? super.textColor, in: mutableAttributedText)
+        textProcessor.update(linksUnderlineStyle: linkUnderlineStyle, in: mutableAttributedText)
+        textProcessor.updateTextShadow(using: shadowColor, offset: shadowOffset, in: mutableAttributedText)
+
+        return mutableAttributedText
     }
 }
 

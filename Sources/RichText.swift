@@ -13,6 +13,7 @@ import SwiftUI
 public struct RichText: View {
 
     private let text: String?
+    private let textProcessor: RichTextProcessor
     private let configure: ((_ richText: RichTextLabelProxy) -> Void)?
     private let linkTapAction: ((_ url: URL) -> Void)?
 
@@ -31,10 +32,12 @@ public struct RichText: View {
 
     public init(
         _ text: String? = nil,
+        textProcessor: RichTextProcessor = PlainTextProcessor(),
         configure: ((RichTextLabelProxy) -> Void)? = nil,
         linkTapAction: ((URL) -> Void)? = nil
     ) {
         self.text = text
+        self.textProcessor = textProcessor
         self.configure = configure
         self.linkTapAction = linkTapAction
     }
@@ -42,6 +45,7 @@ public struct RichText: View {
     private func richTextLabelRepresentable(with geometry: GeometryProxy? = nil) -> some View {
         return RichTextLabelRepresentable(
             text: text,
+            textProcessor: textProcessor,
             configure: configure,
             linkTapAction: linkTapAction,
             geometry: geometry,
@@ -58,6 +62,7 @@ struct RichTextLabelRepresentable: UIViewRepresentable {
     typealias UIViewType = RichTextLabel
 
     let text: String?
+    let textProcessor: RichTextProcessor
     let configure: ((RichTextLabelProxy) -> Void)?
     let linkTapAction: ((_ url: URL) -> Void)?
 
@@ -67,14 +72,16 @@ struct RichTextLabelRepresentable: UIViewRepresentable {
     @Environment(\.lineLimit) private var lineLimit
 
     func makeUIView(context: Context) -> UIViewType {
-        let label = RichTextLabel()
+        let label = RichTextLabel(textProcessor: textProcessor)
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        uiView.textProcessor = textProcessor
         configure?(RichTextLabelProxy(originalView: uiView))
         uiView.numberOfLines = lineLimit ?? 0
+
         uiView.linkTapAction = linkTapAction
 
         uiView.text = text
@@ -123,6 +130,11 @@ public struct RichTextLabelProxy {
     public var lineBreakMode: NSLineBreakMode {
         get { originalView.lineBreakMode }
         nonmutating set { originalView.lineBreakMode = newValue }
+    }
+
+    public var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy {
+        get { originalView.lineBreakStrategy }
+        nonmutating set { originalView.lineBreakStrategy = newValue }
     }
 
     public var lineHeightMultiplier: Double {
