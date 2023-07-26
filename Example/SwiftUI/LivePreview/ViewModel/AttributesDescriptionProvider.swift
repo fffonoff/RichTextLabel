@@ -10,7 +10,7 @@ import UIKit
 struct AttributesDescriptionProvider {
 
     let lineLimit = NumericAttributeDescription(titleFormat: "Line limit: %.0f", range: 0...10, defaultValue: 0)
-    let fontSize = NumericAttributeDescription(titleFormat: "Font size: %.0f", range: 12...40, defaultValue: 21)
+    let fontSize = NumericAttributeDescription(titleFormat: "Font size: %.0f", range: 12...40, defaultValue: 19)
     let textColor = MultiOptionAttributeDescription<UIColor?>(
         title: "Text color",
         options: [

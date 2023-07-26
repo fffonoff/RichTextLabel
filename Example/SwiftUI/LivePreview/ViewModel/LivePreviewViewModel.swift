@@ -12,7 +12,18 @@ final class LivePreviewViewModel: ObservableObject {
     let attributes = AttributesDescriptionProvider()
 
     let text = """
-    RichTextLabel supports all UILabel functionality as well as custom link handling: https://github.com/fffonoff/RichTextLabel
+    <b style=\"color: orange;\">RichTextLabel</b> is a convinient replacement for standard UILabel \
+    supporting URL links handling customization and ability to work with html-text using custom parsers, \
+    which support all the standard html formatting tags: <br>\
+    <ul>\
+    <li><del>Strikethrough</del></li>\
+    <li><b>Bold</b></li>\
+    <li><i>Italic</i></li>\
+    </ul>\
+    In addition to that you can use your own custom written parser\
+    <br>\
+    <br>\
+    <a href=\"https://github.com/fffonoff/RichTextLabel\">Github link</a>
     """
 
     @Published var lineNumber: Double

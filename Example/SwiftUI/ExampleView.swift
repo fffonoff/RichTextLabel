@@ -20,6 +20,7 @@ struct ExampleView: View {
         ScrollView() {
             RichText(
                 text,
+                textProcessor: PlainTextProcessor(),
                 configure: { richText in
                     richText.font = .systemFont(ofSize: 21)
                     richText.textColor = .label

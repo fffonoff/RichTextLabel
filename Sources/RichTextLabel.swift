@@ -20,6 +20,7 @@ public class RichTextLabel: UILabel {
 
     public var textProcessor: RichTextProcessor {
         didSet {
+            guard type(of: oldValue) != type(of: textProcessor) else { return }
             processText()
         }
     }
@@ -125,7 +126,7 @@ public class RichTextLabel: UILabel {
 
     // MARK: - Init
 
-    public init(textProcessor: RichTextProcessor = PlainTextProcessor()) {
+    public init(textProcessor: RichTextProcessor = TextWithHtmlProcessor()) {
         self.textProcessor = textProcessor
         super.init(frame: .zero)
         isUserInteractionEnabled = true
@@ -323,6 +324,16 @@ public extension RichTextLabel {
             return
         }
 
+        if textProcessor.requiresAsyncTextProcessing {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateAttributedText(using: text)
+            }
+        } else {
+            updateAttributedText(using: text)
+        }
+    }
+
+    private func updateAttributedText(using text: String) {
         attributedText = textProcessor.attributedText(from: text, withTextColor: textColor ?? super.textColor)
         setNeedsDisplay()
     }
