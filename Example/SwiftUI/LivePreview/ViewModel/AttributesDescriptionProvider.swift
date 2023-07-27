@@ -38,6 +38,15 @@ struct AttributesDescriptionProvider {
         step: 0.05,
         defaultValue: 1
     )
+    let textProcessor = MultiOptionAttributeDescription<TextProcessorType>(
+        title: "Text processor",
+        options: [
+            AttributeOption(title: "Plain text", value: .plainText),
+            AttributeOption(title: "Text with Html", value: .textWithHtml),
+            AttributeOption(title: "Text with Html (DT)", value: .textWithHtmlDT)
+        ],
+        defaultValue: .textWithHtmlDT
+    )
 
     let linksDecorationsGroupTitle = "Links decorations"
     let linkTextColor = MultiOptionAttributeDescription<UIColor?>(

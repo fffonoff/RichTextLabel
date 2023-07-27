@@ -14,6 +14,7 @@
 		300E6D222B5CB18C007EF0B2 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D212B5CB18C007EF0B2 /* ExampleView.swift */; };
 		300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */; };
 		3029C6232B5E143E00836522 /* AttributeGroupTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3029C6222B5E143E00836522 /* AttributeGroupTitleView.swift */; };
+		302B33C52B6A8B0400F68863 /* TextProcessorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B33C32B6A8A7900F68863 /* TextProcessorType.swift */; };
 		308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */; };
 		30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */; };
 		30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A52B5B404F00ABFE13 /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 		300E6D242B5CB3A3007EF0B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericAttributeView.swift; sourceTree = "<group>"; };
 		3029C6222B5E143E00836522 /* AttributeGroupTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeGroupTitleView.swift; sourceTree = "<group>"; };
+		302B33C32B6A8A7900F68863 /* TextProcessorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessorType.swift; sourceTree = "<group>"; };
 		308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Compatibility.swift"; sourceTree = "<group>"; };
 		30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextLabelExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextLabelExampleApp.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				300E6D1A2B5CA958007EF0B2 /* Extensions */,
+				302B33C22B6A8A5800F68863 /* Misc */,
 				30E01A0F2B5CEC0F002BC2D0 /* Utils */,
 				30E01A052B5CC4ED002BC2D0 /* ViewModel */,
 				300E6D172B5CA928007EF0B2 /* Views */,
@@ -108,6 +111,14 @@
 				300E6D1B2B5CA966007EF0B2 /* UIColor+Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		302B33C22B6A8A5800F68863 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				302B33C32B6A8A7900F68863 /* TextProcessorType.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		308FC77E2B5A2C340001940C /* Extensions */ = {
@@ -295,6 +306,7 @@
 				300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */,
 				30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */,
 				300E6D192B5CA935007EF0B2 /* TextContainerView.swift in Sources */,
+				302B33C52B6A8B0400F68863 /* TextProcessorType.swift in Sources */,
 				30E01A142B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift in Sources */,
 				300E6D1C2B5CA966007EF0B2 /* UIColor+Color.swift in Sources */,
 				30E01A112B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift in Sources */,

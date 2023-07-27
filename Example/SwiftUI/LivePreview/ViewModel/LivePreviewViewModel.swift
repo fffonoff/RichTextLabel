@@ -31,6 +31,7 @@ final class LivePreviewViewModel: ObservableObject {
     @Published var textColor: UIColor?
     @Published var textAlignment: NSTextAlignment
     @Published var lineHeightMultiplier: Double
+    @Published var textProcessorType: TextProcessorType
 
     @Published var linkTextColor: UIColor?
     @Published var linkHighlightColor: UIColor?
@@ -51,6 +52,7 @@ final class LivePreviewViewModel: ObservableObject {
         textColor = attributes.textColor.defaultValue
         textAlignment = attributes.textAlignment.defaultValue
         lineHeightMultiplier = attributes.lineHeightMultiplier.defaultValue
+        textProcessorType = attributes.textProcessor.defaultValue
 
         linkTextColor = attributes.linkTextColor.defaultValue
         linkHighlightColor = attributes.linkHighlightColor.defaultValue

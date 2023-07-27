@@ -126,7 +126,7 @@ public class RichTextLabel: UILabel {
 
     // MARK: - Init
 
-    public init(textProcessor: RichTextProcessor = DTTextWithHtmlProcessor()) {
+    public init(textProcessor: RichTextProcessor = PlainTextProcessor()) {
         self.textProcessor = textProcessor
         super.init(frame: .zero)
         isUserInteractionEnabled = true

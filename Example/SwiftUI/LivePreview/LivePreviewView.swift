@@ -21,6 +21,7 @@ struct LivePreviewView: View {
             TextContainerView {
                 RichText(
                     viewModel.text,
+                    textProcessor: viewModel.textProcessorType.create(),
                     configure: { richText in
                         richText.font = .systemFont(ofSize: viewModel.fontSize)
                         richText.textColor = viewModel.textColor
@@ -66,6 +67,7 @@ struct LivePreviewView: View {
         MultiOptionAttributeView(viewModel.attributes.textColor, selection: $viewModel.textColor)
         MultiOptionAttributeView(viewModel.attributes.textAlignment, selection: $viewModel.textAlignment)
         NumericAttributeView(viewModel.attributes.lineHeightMultiplier, value: $viewModel.lineHeightMultiplier)
+        MultiOptionAttributeView(viewModel.attributes.textProcessor, selection: $viewModel.textProcessorType)
     }
 
     @ViewBuilder private var linksDecorations: some View {
