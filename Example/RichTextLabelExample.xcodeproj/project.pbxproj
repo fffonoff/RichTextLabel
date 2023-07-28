@@ -15,10 +15,10 @@
 		300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */; };
 		3029C6232B5E143E00836522 /* AttributeGroupTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3029C6222B5E143E00836522 /* AttributeGroupTitleView.swift */; };
 		302B33C52B6A8B0400F68863 /* TextProcessorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B33C32B6A8A7900F68863 /* TextProcessorType.swift */; };
+		302B33C82B6A8CA500F68863 /* RichTextLabelDT in Frameworks */ = {isa = PBXBuildFile; productRef = 302B33C72B6A8CA500F68863 /* RichTextLabelDT */; };
 		308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */; };
 		30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */; };
 		30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A52B5B404F00ABFE13 /* ContentView.swift */; };
-		30B1F6B22B5B474D00ABFE13 /* RichTextLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 30B1F6B12B5B474D00ABFE13 /* RichTextLabel */; };
 		30CAF2D72B55F0AB00296DD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2D62B55F0AB00296DD4 /* AppDelegate.swift */; };
 		30CAF2D92B55F0AB00296DD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2D82B55F0AB00296DD4 /* SceneDelegate.swift */; };
 		30CAF2DB2B55F0AB00296DD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2DA2B55F0AB00296DD4 /* ViewController.swift */; };
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30B1F6B22B5B474D00ABFE13 /* RichTextLabel in Frameworks */,
+				302B33C82B6A8CA500F68863 /* RichTextLabelDT in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +207,7 @@
 			);
 			name = RichTextLabelExample;
 			packageProductDependencies = (
-				30B1F6B12B5B474D00ABFE13 /* RichTextLabel */,
+				302B33C72B6A8CA500F68863 /* RichTextLabelDT */,
 			);
 			productName = RichTextLabelExample;
 			productReference = 30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */;
@@ -593,9 +593,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		30B1F6B12B5B474D00ABFE13 /* RichTextLabel */ = {
+		302B33C72B6A8CA500F68863 /* RichTextLabelDT */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = RichTextLabel;
+			productName = RichTextLabelDT;
 		};
 		30CBD1E12B5B304200F6729B /* RichTextLabel */ = {
 			isa = XCSwiftPackageProductDependency;

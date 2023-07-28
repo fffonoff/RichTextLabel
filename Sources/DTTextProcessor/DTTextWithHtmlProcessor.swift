@@ -6,6 +6,7 @@
 //
 
 import DTCoreText
+@_exported import RichTextLabel
 
 public struct DTTextWithHtmlProcessor: RichTextProcessor {
 

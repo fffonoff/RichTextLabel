@@ -5,7 +5,7 @@
 //  Created by Roman Trifonov on 27/07/2023.
 //
 
-import RichTextLabel
+import RichTextLabelDT
 
 enum TextProcessorType {
     case plainText
