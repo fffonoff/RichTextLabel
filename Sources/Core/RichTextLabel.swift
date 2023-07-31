@@ -9,13 +9,6 @@ import UIKit
 
 public class RichTextLabel: UILabel {
 
-    // MARK: - Types
-
-    private struct Link {
-        let url: URL
-        let range: NSRange
-    }
-
     // MARK: - Public Properties
 
     public var textProcessor: RichTextProcessor {
@@ -99,6 +92,8 @@ public class RichTextLabel: UILabel {
         return textStorage
     }()
 
+    private lazy var linksHandler = LinksInteractionHandler()
+
     private lazy var linksHighlightLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.frame = frame
@@ -107,9 +102,6 @@ public class RichTextLabel: UILabel {
         layer.opacity = 0
         return layer
     }()
-
-    private var links: [Link] = []
-    private var isTouchMoved = false
 
     private var selectedLinkRange = NSRange() {
         didSet {
@@ -129,7 +121,8 @@ public class RichTextLabel: UILabel {
     public init(textProcessor: RichTextProcessor = PlainTextProcessor()) {
         self.textProcessor = textProcessor
         super.init(frame: .zero)
-        isUserInteractionEnabled = true
+
+        setupLinksHandling()
     }
 
     @available(*, unavailable)
@@ -139,15 +132,20 @@ public class RichTextLabel: UILabel {
 
     // MARK: - Private Methods
 
-    private func extractLinks(from attributedText: NSAttributedString?) -> [Link] {
-        var links = [Link]()
-        guard let attributedText else { return links }
+    private func setupLinksHandling() {
+        isUserInteractionEnabled = true
 
-        attributedText.enumerateAttribute(.link, in: attributedText.range) { value, range, _ in
-            guard let url = value as? URL else { return }
-            links.append(Link(url: url, range: range))
+        linksHandler.attach(to: self) { [weak self] state in
+            switch state {
+            case .idle:
+                self?.selectedLinkRange = NSRange()
+            case .linkTouched(let link):
+                self?.selectedLinkRange = link.range
+            case .linkTapped(let link):
+                self?.linkTapAction?(link.url)
+                self?.selectedLinkRange = NSRange()
+            }
         }
-        return links
     }
 
     private func highlightLink(in linkRange: NSRange) {
@@ -196,6 +194,8 @@ public extension RichTextLabel {
 
         textContainer.size = bounds.size
         linksHighlightLayer.frame = frame
+
+        linksHandler.textLabelDidLayout()
     }
 }
 
@@ -284,7 +284,7 @@ public extension RichTextLabel {
     override var attributedText: NSAttributedString? {
         get { textStorage }
         set {
-            links = extractLinks(from: newValue)
+            linksHandler.updateLinks(for: newValue)
             textStorage.setAttributedString(decorateAttributedText(newValue) ?? NSAttributedString())
             invalidateIntrinsicContentSize()
         }
@@ -356,54 +356,6 @@ public extension RichTextLabel {
         textProcessor.updateTextShadow(using: shadowColor, offset: shadowOffset, in: mutableAttributedText)
 
         return mutableAttributedText
-    }
-}
-
-// MARK: - UIResponder
-
-public extension RichTextLabel {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTouchMoved = false
-
-        if let touchLocation = touches.randomElement()?.location(in: self), let touchedLink = link(at: touchLocation) {
-            selectedLinkRange = touchedLink.range
-        } else {
-            super.touchesBegan(touches, with: event)
-        }
-    }
-
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-
-        isTouchMoved = true
-        selectedLinkRange = NSRange()
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-
-        selectedLinkRange = NSRange()
-        if !isTouchMoved,
-           let touchLocation = touches.randomElement()?.location(in: self),
-           let touchedLink = link(at: touchLocation) {
-            linkTapAction?(touchedLink.url)
-        }
-    }
-
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        selectedLinkRange = NSRange()
-    }
-
-    private func link(at location: CGPoint) -> Link? {
-        guard textStorage.length > 0 else { return nil }
-
-        let textOrigin = textContainerOrigin
-        let correctLocation = CGPoint(x: location.x - textOrigin.x, y: location.y - textOrigin.y)
-        let touchedGlyphIndex = layoutManager.glyphIndex(for: correctLocation, in: textContainer)
-        let lineUsedRect = layoutManager.lineFragmentUsedRect(forGlyphAt: touchedGlyphIndex, effectiveRange: nil)
-
-        return lineUsedRect.contains(location) ? links.first(where: { $0.range.contains(touchedGlyphIndex) }) : nil
     }
 }
 
