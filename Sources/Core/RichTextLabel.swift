@@ -141,6 +141,16 @@ public class RichTextLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public Methods
+
+    public func batchConfigure(_ configure: (RichTextLabel) -> Void) {
+        textStorage.removeLayoutManager(layoutManager)
+        textStorage.beginEditing()
+        configure(self)
+        textStorage.endEditing()
+        textStorage.addLayoutManager(layoutManager)
+    }
+
     // MARK: - Private Methods
 
     private func setupLinksHandling() {

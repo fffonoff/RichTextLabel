@@ -83,9 +83,12 @@ struct RichTextLabelRepresentable: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        uiView.textProcessor = textProcessor
-        configure?(RichTextLabelProxy(originalView: uiView))
         uiView.numberOfLines = lineLimit ?? 0
+        uiView.batchConfigure { uiView in
+            uiView.textProcessor = textProcessor
+            configure?(RichTextLabelProxy(originalView: uiView))
+            uiView.text = text
+        }
 
         uiView.linkTapAction = linkTapAction
         uiView.linkLongPressAction = linkLongPressAction
