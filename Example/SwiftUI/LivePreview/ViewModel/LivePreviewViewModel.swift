@@ -42,9 +42,20 @@ final class LivePreviewViewModel: ObservableObject {
     @Published var isPersistentLinkUnderline: Bool
     @Published var underlineByWord: Bool
 
+    @Published var linkLongPressDuration: Double
+
     @Published var shadowColor: UIColor?
     @Published var shadowXOffset: Double
     @Published var shadowYOffset: Double
+
+    var selectedLinkUrl: URL? {
+        didSet {
+            if selectedLinkUrl != nil {
+                isLinkActionSheetPresented = true
+            }
+        }
+    }
+    @Published var isLinkActionSheetPresented = false
 
     init() {
         lineNumber = attributes.lineLimit.defaultValue
@@ -62,6 +73,8 @@ final class LivePreviewViewModel: ObservableObject {
         isPersistentLinkUnderline = attributes.persistentUnderline.defaultValue
         underlineByWord = attributes.underlineByWord.defaultValue
 
+        linkLongPressDuration = attributes.linkLongPressDuration.defaultValue
+
         shadowColor = attributes.shadowColor.defaultValue
         shadowXOffset = attributes.shadowXOffset.defaultValue
         shadowYOffset = attributes.shadowYOffset.defaultValue
@@ -76,5 +89,13 @@ final class LivePreviewViewModel: ObservableObject {
             return linkUnderlineStyle
         }
         .assign(to: &$linkUnderlineStyle)
+    }
+
+    func copyToPasteboard(text: String?) {
+        guard let text, !text.isEmpty else {
+            return
+        }
+
+        UIPasteboard.general.string = text
     }
 }

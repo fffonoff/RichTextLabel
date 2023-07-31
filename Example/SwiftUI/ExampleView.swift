@@ -12,6 +12,13 @@ struct ExampleView: View {
 
     @Environment(\.openURL) private var openURL
 
+    @State private var selectedLinkUrl: URL? {
+        didSet {
+            isLinkActionSheetPresented = selectedLinkUrl != nil
+        }
+    }
+    @State private var isLinkActionSheetPresented = false
+
     private let text = """
     RichTextLabel supports all UILabel functionality as well as custom link handling: https://github.com/fffonoff/RichTextLabel
     """
@@ -34,10 +41,22 @@ struct ExampleView: View {
                 },
                 linkTapAction: { url in
                     openURL(url)
+                },
+                linkLongPressAction: { url in
+                    selectedLinkUrl = url
                 }
             )
             .lineLimit(0)
             .padding(20)
+        }
+        .actionSheet(isPresented: $isLinkActionSheetPresented) {
+            let urlString = selectedLinkUrl?.absoluteString
+            return ActionSheet(title: Text(urlString ?? "No url"), buttons: [
+                .default(Text("Copy")) {
+                    UIPasteboard.general.string = urlString
+                },
+                .cancel()
+            ])
         }
     }
 }

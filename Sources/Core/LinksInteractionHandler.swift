@@ -43,12 +43,13 @@ final class LinksInteractionHandler: NSObject {
         case idle
         case linkTouched(link: RichTextLink)
         case linkTapped(link: RichTextLink)
+        case linkLongPressed(link: RichTextLink)
     }
 
     // MARK: - Public Properties
     
     var isLongPressTrackingEnabled = false
-    var minimumPressDuration: Double = 0.5
+    var linkLongPressDuration: TimeInterval = 0.5
 
     // MARK: - Private Properties
     
@@ -76,7 +77,14 @@ final class LinksInteractionHandler: NSObject {
     private var links: [RichTextLink] = []
     private var linksByRect: [RectHashWrapper: RichTextLink] = [:]
 
-    private var currentlySelectedLink: RichTextLink?
+    private var currentlySelectedLink: RichTextLink? {
+        didSet {
+            if currentlySelectedLink == nil {
+                longPressTrigger?.cancel()
+            }
+        }
+    }
+    private var longPressTrigger: DispatchWorkItem?
 
     // MARK: - Public Methods
 
@@ -133,6 +141,7 @@ final class LinksInteractionHandler: NSObject {
         }
 
         state = .linkTouched(link: currentlySelectedLink)
+        scheduleLongPressTrigger(for: currentlySelectedLink)
     }
 
     private func touchChanged(in location: CGPoint) {
@@ -142,6 +151,7 @@ final class LinksInteractionHandler: NSObject {
     }
 
     private func touchEnded(in location: CGPoint) {
+        longPressTrigger?.cancel()
         guard let currentlySelectedLink, currentlySelectedLink == link(at: location) else {
             return
         }
@@ -151,6 +161,20 @@ final class LinksInteractionHandler: NSObject {
 
     private func touchCanceledOrFailed() {
         state = .idle
+    }
+
+    private func scheduleLongPressTrigger(for selectedLink: RichTextLink) {
+        guard isLongPressTrackingEnabled else {
+            return
+        }
+
+        longPressTrigger?.cancel()
+        let longPressTrigger = DispatchWorkItem() { [weak self] in
+            self?.state = .linkLongPressed(link: selectedLink)
+            self?.state = .idle
+        }
+        self.longPressTrigger = longPressTrigger
+        DispatchQueue.main.asyncAfter(deadline: .now() + linkLongPressDuration, execute: longPressTrigger)
     }
 
     private func link(at location: CGPoint) -> RichTextLink? {

@@ -20,6 +20,17 @@ public class RichTextLabel: UILabel {
 
     public var linkTapAction: ((URL) -> Void)?
 
+    public var linkLongPressAction: ((URL) -> Void)? {
+        didSet {
+            linksHandler.isLongPressTrackingEnabled = linkLongPressAction != nil
+        }
+    }
+
+    public var linkLongPressDuration: TimeInterval {
+        get { linksHandler.linkLongPressDuration }
+        set { linksHandler.linkLongPressDuration = newValue }
+    }
+
     public var lineHeightMultiplier: CGFloat = 1 {
         didSet {
             guard oldValue != lineHeightMultiplier else { return }
@@ -143,6 +154,9 @@ public class RichTextLabel: UILabel {
                 self?.selectedLinkRange = link.range
             case .linkTapped(let link):
                 self?.linkTapAction?(link.url)
+                self?.selectedLinkRange = NSRange()
+            case .linkLongPressed(let link):
+                self?.linkLongPressAction?(link.url)
                 self?.selectedLinkRange = NSRange()
             }
         }

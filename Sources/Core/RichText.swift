@@ -16,6 +16,7 @@ public struct RichText: View {
     private let textProcessor: RichTextProcessor
     private let configure: ((_ richText: RichTextLabelProxy) -> Void)?
     private let linkTapAction: ((_ url: URL) -> Void)?
+    private let linkLongPressAction: ((_ url: URL) -> Void)?
 
     @State private var height = CGFloat.zero
 
@@ -34,12 +35,14 @@ public struct RichText: View {
         _ text: String? = nil,
         textProcessor: RichTextProcessor = PlainTextProcessor(),
         configure: ((RichTextLabelProxy) -> Void)? = nil,
-        linkTapAction: ((URL) -> Void)? = nil
+        linkTapAction: ((URL) -> Void)? = nil,
+        linkLongPressAction: ((URL) -> Void)? = nil
     ) {
         self.text = text
         self.textProcessor = textProcessor
         self.configure = configure
         self.linkTapAction = linkTapAction
+        self.linkLongPressAction = linkLongPressAction
     }
 
     private func richTextLabelRepresentable(with geometry: GeometryProxy? = nil) -> some View {
@@ -48,6 +51,7 @@ public struct RichText: View {
             textProcessor: textProcessor,
             configure: configure,
             linkTapAction: linkTapAction,
+            linkLongPressAction: linkLongPressAction,
             geometry: geometry,
             height: $height
         )
@@ -65,6 +69,7 @@ struct RichTextLabelRepresentable: UIViewRepresentable {
     let textProcessor: RichTextProcessor
     let configure: ((RichTextLabelProxy) -> Void)?
     let linkTapAction: ((_ url: URL) -> Void)?
+    let linkLongPressAction: ((_ url: URL) -> Void)?
 
     let geometry: GeometryProxy?
     @Binding var height: CGFloat
@@ -83,6 +88,7 @@ struct RichTextLabelRepresentable: UIViewRepresentable {
         uiView.numberOfLines = lineLimit ?? 0
 
         uiView.linkTapAction = linkTapAction
+        uiView.linkLongPressAction = linkLongPressAction
 
         uiView.text = text
 
@@ -175,6 +181,11 @@ public struct RichTextLabelProxy {
     public var shadowOffset: CGSize {
         get { originalView.shadowOffset }
         nonmutating set { originalView.shadowOffset = newValue }
+    }
+
+    public var linkLongPressDuration: TimeInterval {
+        get { originalView.linkLongPressDuration }
+        nonmutating set { originalView.linkLongPressDuration = newValue }
     }
 
     private let originalView: RichTextLabel

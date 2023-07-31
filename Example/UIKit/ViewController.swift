@@ -70,9 +70,28 @@ final class ViewController: UIViewController {
             UIApplication.shared.open(url)
         }
 
+        textLabel.linkLongPressAction = { [weak self] url in
+            self?.showLinkActionSheet(for: url)
+        }
+
         let text = """
         RichTextLabel supports all UILabel functionality as well as custom link handling: https://github.com/fffonoff/RichTextLabel
         """
         textLabel.text = text
+    }
+    
+    private func showLinkActionSheet(for url: URL) {
+        let actionSheetController = UIAlertController(
+            title: url.absoluteString,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        let copyAction = UIAlertAction(title: "Copy", style: .default) { _ in
+            UIPasteboard.general.string = url.absoluteString
+        }
+        actionSheetController.addAction(copyAction)
+        actionSheetController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(actionSheetController, animated: true)
     }
 }

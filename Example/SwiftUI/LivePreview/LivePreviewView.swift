@@ -32,6 +32,7 @@ struct LivePreviewView: View {
                         richText.linkHighlightCornerRadius = viewModel.linkHighlightCornerRadius
                         richText.linkUnderlineStyle = viewModel.linkUnderlineStyle
                         richText.isPersistentLinkUnderline = viewModel.isPersistentLinkUnderline
+                        richText.linkLongPressDuration = viewModel.linkLongPressDuration
                         richText.shadowColor = viewModel.shadowColor
                         richText.shadowOffset = CGSize(
                             width: viewModel.shadowXOffset,
@@ -40,6 +41,9 @@ struct LivePreviewView: View {
                     },
                     linkTapAction: { url in
                         openURL(url)
+                    },
+                    linkLongPressAction: { url in
+                        viewModel.selectedLinkUrl = url
                     }
                 )
                 .lineLimit(Int(viewModel.lineNumber))
@@ -51,6 +55,7 @@ struct LivePreviewView: View {
                 VStack(spacing: 8) {
                     textAttributes
                     linksDecorations
+                    linksInteractionAttributes
                     textShadowAttributes
                 }
                 .font(.system(size: 17))
@@ -58,6 +63,15 @@ struct LivePreviewView: View {
                 .padding(.horizontal, inset)
             }
             .frame(maxHeight: .infinity)
+        }
+        .actionSheet(isPresented: $viewModel.isLinkActionSheetPresented) {
+            let urlString = viewModel.selectedLinkUrl?.absoluteString
+            return ActionSheet(title: Text(urlString ?? "No url"), buttons: [
+                .default(Text("Copy")) {
+                    viewModel.copyToPasteboard(text: urlString)
+                },
+                .cancel()
+            ])
         }
     }
 
@@ -87,6 +101,11 @@ struct LivePreviewView: View {
             BooleanAttributeView(viewModel.attributes.persistentUnderline, isOn: $viewModel.isPersistentLinkUnderline)
             BooleanAttributeView(viewModel.attributes.underlineByWord, isOn: $viewModel.underlineByWord)
         }
+    }
+
+    @ViewBuilder private var linksInteractionAttributes: some View {
+        AttributeGroupTitleView(viewModel.attributes.linksInteractionGroupTitle)
+        NumericAttributeView(viewModel.attributes.linkLongPressDuration, value: $viewModel.linkLongPressDuration)
     }
 
     @ViewBuilder private var textShadowAttributes: some View {

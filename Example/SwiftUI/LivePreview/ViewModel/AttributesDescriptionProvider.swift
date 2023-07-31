@@ -98,6 +98,14 @@ struct AttributesDescriptionProvider {
     let persistentUnderline = BooleanAttributeDescription(title: "Persistent underline", defaultValue: true)
     let underlineByWord = BooleanAttributeDescription(title: "Underline by word", defaultValue: false)
 
+    let linksInteractionGroupTitle = "Links interaction"
+    let linkLongPressDuration = NumericAttributeDescription(
+        titleFormat: "Long press duration: %.1f",
+        range: 0.3...1,
+        step: 0.1,
+        defaultValue: 0.5
+    )
+
     let textShadowGroupTitle = "Text shadow"
     let shadowColor = MultiOptionAttributeDescription<UIColor?>(
         title: "Text shadow color",
