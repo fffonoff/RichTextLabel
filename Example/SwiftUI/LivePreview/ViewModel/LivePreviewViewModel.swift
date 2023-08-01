@@ -9,22 +9,27 @@ import SwiftUI
 
 final class LivePreviewViewModel: ObservableObject {
 
+    private enum Constants {
+        static let defaultText = """
+        <b style=\"color: orange;\">RichTextLabel</b> is a convinient replacement for standard UILabel \
+        supporting URL links handling customization and ability to work with html-text using custom parsers, \
+        which support all the standard html formatting tags: <br>\
+        <ul>\
+        <li><del>Strikethrough</del></li>\
+        <li><b>Bold</b></li>\
+        <li><i>Italic</i></li>\
+        </ul>\
+        In addition to that you can use your own custom written parser\
+        <br>\
+        <br>\
+        <a href=\"https://github.com/fffonoff/RichTextLabel\">Github link</a>
+        """
+    }
+
     let attributes = AttributesDescriptionProvider()
 
-    let text = """
-    <b style=\"color: orange;\">RichTextLabel</b> is a convinient replacement for standard UILabel \
-    supporting URL links handling customization and ability to work with html-text using custom parsers, \
-    which support all the standard html formatting tags: <br>\
-    <ul>\
-    <li><del>Strikethrough</del></li>\
-    <li><b>Bold</b></li>\
-    <li><i>Italic</i></li>\
-    </ul>\
-    In addition to that you can use your own custom written parser\
-    <br>\
-    <br>\
-    <a href=\"https://github.com/fffonoff/RichTextLabel\">Github link</a>
-    """
+    @Published var text = Constants.defaultText
+    @Published private(set) var isUserText = false
 
     @Published var lineNumber: Double
     @Published var fontSize: Double
@@ -57,7 +62,11 @@ final class LivePreviewViewModel: ObservableObject {
     }
     @Published var isLinkActionSheetPresented = false
 
-    init() {
+    private let pasteBoardHelper: PasteBoardHelper
+
+    init(pasteBoardHelper: PasteBoardHelper) {
+        self.pasteBoardHelper = pasteBoardHelper
+
         lineNumber = attributes.lineLimit.defaultValue
         fontSize = attributes.fontSize.defaultValue
         textColor = attributes.textColor.defaultValue
@@ -89,6 +98,14 @@ final class LivePreviewViewModel: ObservableObject {
             return linkUnderlineStyle
         }
         .assign(to: &$linkUnderlineStyle)
+
+        $isUserText
+            .dropFirst()
+            .compactMap { [pasteBoardHelper] isUserText in
+                isUserText ? pasteBoardHelper.string : Constants.defaultText
+            }
+            .removeDuplicates()
+            .assign(to: &$text)
     }
 
     func copyToPasteboard(text: String?) {
@@ -96,6 +113,18 @@ final class LivePreviewViewModel: ObservableObject {
             return
         }
 
-        UIPasteboard.general.string = text
+        pasteBoardHelper.string = text
+    }
+
+    func pasteUserText() {
+        guard pasteBoardHelper.hasStrings, text != pasteBoardHelper.string else {
+            return
+        }
+
+        isUserText = true
+    }
+
+    func dropUserText() {
+        isUserText = false
     }
 }

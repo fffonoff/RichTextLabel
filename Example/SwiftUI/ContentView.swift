@@ -20,7 +20,8 @@ struct ContentView: View {
                         exampleTabLabel
                     }
                 }
-            LivePreviewView()
+            LivePreviewModule()
+                .view
                 .tabItem {
                     Label("Live Preview", systemImage: "slider.horizontal.3")
                 }

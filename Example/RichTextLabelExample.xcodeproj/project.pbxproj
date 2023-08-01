@@ -14,8 +14,12 @@
 		300E6D222B5CB18C007EF0B2 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D212B5CB18C007EF0B2 /* ExampleView.swift */; };
 		300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */; };
 		3029C6232B5E143E00836522 /* AttributeGroupTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3029C6222B5E143E00836522 /* AttributeGroupTitleView.swift */; };
+		302B23E72B73CE6900117445 /* PasteBoardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B23E62B73CE6900117445 /* PasteBoardHelper.swift */; };
+		302B23E92B741D3400117445 /* LivePreviewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B23E82B741D3400117445 /* LivePreviewModule.swift */; };
+		302B23EB2B74233000117445 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B23EA2B74233000117445 /* LazyView.swift */; };
 		302B33C52B6A8B0400F68863 /* TextProcessorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B33C32B6A8A7900F68863 /* TextProcessorType.swift */; };
 		302B33C82B6A8CA500F68863 /* RichTextLabelDT in Frameworks */ = {isa = PBXBuildFile; productRef = 302B33C72B6A8CA500F68863 /* RichTextLabelDT */; };
+		3076A0882B73C751006CB799 /* PasteBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076A0872B73C751006CB799 /* PasteBoardView.swift */; };
 		308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */; };
 		30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */; };
 		30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A52B5B404F00ABFE13 /* ContentView.swift */; };
@@ -40,7 +44,11 @@
 		300E6D242B5CB3A3007EF0B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericAttributeView.swift; sourceTree = "<group>"; };
 		3029C6222B5E143E00836522 /* AttributeGroupTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeGroupTitleView.swift; sourceTree = "<group>"; };
+		302B23E62B73CE6900117445 /* PasteBoardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBoardHelper.swift; sourceTree = "<group>"; };
+		302B23E82B741D3400117445 /* LivePreviewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePreviewModule.swift; sourceTree = "<group>"; };
+		302B23EA2B74233000117445 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		302B33C32B6A8A7900F68863 /* TextProcessorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessorType.swift; sourceTree = "<group>"; };
+		3076A0872B73C751006CB799 /* PasteBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBoardView.swift; sourceTree = "<group>"; };
 		308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Compatibility.swift"; sourceTree = "<group>"; };
 		30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextLabelExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextLabelExampleApp.swift; sourceTree = "<group>"; };
@@ -87,6 +95,7 @@
 				30E01A0F2B5CEC0F002BC2D0 /* Utils */,
 				30E01A052B5CC4ED002BC2D0 /* ViewModel */,
 				300E6D172B5CA928007EF0B2 /* Views */,
+				302B23E82B741D3400117445 /* LivePreviewModule.swift */,
 				300E6D122B5CA87A007EF0B2 /* LivePreviewView.swift */,
 			);
 			path = LivePreview;
@@ -99,6 +108,7 @@
 				30F679902B5E1C7D00B6F829 /* BooleanAttributeView.swift */,
 				30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */,
 				300E6D252B5CC046007EF0B2 /* NumericAttributeView.swift */,
+				3076A0872B73C751006CB799 /* PasteBoardView.swift */,
 				300E6D182B5CA935007EF0B2 /* TextContainerView.swift */,
 			);
 			path = Views;
@@ -185,6 +195,8 @@
 		30E01A0F2B5CEC0F002BC2D0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				302B23EA2B74233000117445 /* LazyView.swift */,
+				302B23E62B73CE6900117445 /* PasteBoardHelper.swift */,
 				30E01A102B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift */,
 			);
 			path = Utils;
@@ -300,10 +312,14 @@
 				30F679912B5E1C7D00B6F829 /* BooleanAttributeView.swift in Sources */,
 				30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */,
 				300E6D222B5CB18C007EF0B2 /* ExampleView.swift in Sources */,
+				302B23EB2B74233000117445 /* LazyView.swift in Sources */,
+				302B23E92B741D3400117445 /* LivePreviewModule.swift in Sources */,
 				300E6D132B5CA87A007EF0B2 /* LivePreviewView.swift in Sources */,
 				300E6D162B5CA8FF007EF0B2 /* LivePreviewViewModel.swift in Sources */,
 				30E01A0C2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift in Sources */,
 				300E6D262B5CC046007EF0B2 /* NumericAttributeView.swift in Sources */,
+				302B23E72B73CE6900117445 /* PasteBoardHelper.swift in Sources */,
+				3076A0882B73C751006CB799 /* PasteBoardView.swift in Sources */,
 				30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */,
 				300E6D192B5CA935007EF0B2 /* TextContainerView.swift in Sources */,
 				302B33C52B6A8B0400F68863 /* TextProcessorType.swift in Sources */,

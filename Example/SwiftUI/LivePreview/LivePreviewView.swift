@@ -10,11 +10,15 @@ import SwiftUI
 
 struct LivePreviewView: View {
 
-    @StateObject private var viewModel = LivePreviewViewModel()
+    @StateObject private var viewModel: LivePreviewViewModel
 
     @Environment(\.openURL) private var openURL
 
     private let inset = 24.0
+
+    init(viewModel: LivePreviewViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -53,6 +57,8 @@ struct LivePreviewView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 8) {
+                    PasteBoardView()
+                        .environmentObject(viewModel)
                     textAttributes
                     linksDecorations
                     linksInteractionAttributes
@@ -120,6 +126,6 @@ struct LivePreviewView: View {
 
 struct LivePreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        LivePreviewView()
+        LivePreviewView(viewModel: LivePreviewViewModel(pasteBoardHelper: PasteBoardHelper_Preview()))
     }
 }
