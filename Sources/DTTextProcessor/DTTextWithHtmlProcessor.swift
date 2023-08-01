@@ -6,7 +6,9 @@
 //
 
 import DTCoreText
+#if !COCOAPODS
 @_exported import RichTextLabel
+#endif
 
 public struct DTTextWithHtmlProcessor: RichTextProcessor {
 
