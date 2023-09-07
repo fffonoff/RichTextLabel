@@ -30,6 +30,7 @@ struct LivePreviewView: View {
                         richText.font = .systemFont(ofSize: viewModel.fontSize)
                         richText.textColor = viewModel.textColor
                         richText.textAlignment = viewModel.textAlignment
+                        richText.lineBreakMode = viewModel.lineBreakMode
                         richText.lineHeightMultiplier = viewModel.lineHeightMultiplier
                         richText.linkTextColor = viewModel.linkTextColor
                         richText.linkHighlightColor = viewModel.linkHighlightColor
@@ -87,6 +88,9 @@ struct LivePreviewView: View {
         NumericAttributeView(viewModel.attributes.fontSize, value: $viewModel.fontSize)
         MultiOptionAttributeView(viewModel.attributes.textColor, selection: $viewModel.textColor)
         MultiOptionAttributeView(viewModel.attributes.textAlignment, selection: $viewModel.textAlignment)
+        if viewModel.lineNumber != 0 {
+            MultiOptionAttributeView(viewModel.attributes.lineBreakMode, selection: $viewModel.lineBreakMode)
+        }
         NumericAttributeView(viewModel.attributes.lineHeightMultiplier, value: $viewModel.lineHeightMultiplier)
         MultiOptionAttributeView(viewModel.attributes.textProcessor, selection: $viewModel.textProcessorType)
     }

@@ -35,6 +35,7 @@ final class LivePreviewViewModel: ObservableObject {
     @Published var fontSize: Double
     @Published var textColor: UIColor?
     @Published var textAlignment: NSTextAlignment
+    @Published var lineBreakMode: NSLineBreakMode
     @Published var lineHeightMultiplier: Double
     @Published var textProcessorType: TextProcessorType
 
@@ -71,6 +72,7 @@ final class LivePreviewViewModel: ObservableObject {
         fontSize = attributes.fontSize.defaultValue
         textColor = attributes.textColor.defaultValue
         textAlignment = attributes.textAlignment.defaultValue
+        lineBreakMode = attributes.lineBreakMode.defaultValue
         lineHeightMultiplier = attributes.lineHeightMultiplier.defaultValue
         textProcessorType = attributes.textProcessor.defaultValue
 

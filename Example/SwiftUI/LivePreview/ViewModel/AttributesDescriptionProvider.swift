@@ -32,6 +32,17 @@ struct AttributesDescriptionProvider {
             AttributeOption(title: "Justified", value: .justified)
         ]
     )
+    let lineBreakMode = MultiOptionAttributeDescription<NSLineBreakMode>(
+        title: "Line break mode",
+        options: [
+            AttributeOption(title: "Truncating tail", value: .byTruncatingTail),
+            AttributeOption(title: "Truncating Head", value: .byTruncatingHead),
+            AttributeOption(title: "Truncating Middle", value: .byTruncatingMiddle),
+            AttributeOption(title: "Clipping", value: .byClipping),
+            AttributeOption(title: "Word wrapping", value: .byWordWrapping),
+            AttributeOption(title: "Char wrapping", value: .byCharWrapping)
+        ]
+    )
     let lineHeightMultiplier = NumericAttributeDescription(
         titleFormat: "Line height: %.2f",
         range: 1...2,
