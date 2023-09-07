@@ -23,6 +23,7 @@ struct TextContainerView<Content: View>: View {
             ScrollView(showsIndicators: false) {
                 content
             }
+            .scrollBounceBasedOnSize()
             GeometryReader { geometry in
                 backgroundColor
                     .frame(height: geometry.safeAreaInsets.top)

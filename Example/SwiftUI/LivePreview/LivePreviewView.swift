@@ -68,6 +68,7 @@ struct LivePreviewView: View {
                 .padding(.vertical, 16)
                 .padding(.horizontal, inset)
             }
+            .scrollBounceBasedOnSize()
             .frame(maxHeight: .infinity)
         }
         .actionSheet(isPresented: $viewModel.isLinkActionSheetPresented) {

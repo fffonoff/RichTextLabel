@@ -19,6 +19,7 @@
 		302B23EB2B74233000117445 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B23EA2B74233000117445 /* LazyView.swift */; };
 		302B33C52B6A8B0400F68863 /* TextProcessorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B33C32B6A8A7900F68863 /* TextProcessorType.swift */; };
 		302B33C82B6A8CA500F68863 /* RichTextLabelDT in Frameworks */ = {isa = PBXBuildFile; productRef = 302B33C72B6A8CA500F68863 /* RichTextLabelDT */; };
+		3048697F2B7642BC00C13BA1 /* ScrollView+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3048697E2B7642BC00C13BA1 /* ScrollView+Compatibility.swift */; };
 		3076A0882B73C751006CB799 /* PasteBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076A0872B73C751006CB799 /* PasteBoardView.swift */; };
 		308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */; };
 		30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */; };
@@ -48,6 +49,7 @@
 		302B23E82B741D3400117445 /* LivePreviewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePreviewModule.swift; sourceTree = "<group>"; };
 		302B23EA2B74233000117445 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		302B33C32B6A8A7900F68863 /* TextProcessorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessorType.swift; sourceTree = "<group>"; };
+		3048697E2B7642BC00C13BA1 /* ScrollView+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+Compatibility.swift"; sourceTree = "<group>"; };
 		3076A0872B73C751006CB799 /* PasteBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBoardView.swift; sourceTree = "<group>"; };
 		308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Compatibility.swift"; sourceTree = "<group>"; };
 		30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextLabelExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 		300E6D1A2B5CA958007EF0B2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3048697E2B7642BC00C13BA1 /* ScrollView+Compatibility.swift */,
 				30E01A132B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift */,
 				300E6D1B2B5CA966007EF0B2 /* UIColor+Color.swift */,
 			);
@@ -321,6 +324,7 @@
 				302B23E72B73CE6900117445 /* PasteBoardHelper.swift in Sources */,
 				3076A0882B73C751006CB799 /* PasteBoardView.swift in Sources */,
 				30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */,
+				3048697F2B7642BC00C13BA1 /* ScrollView+Compatibility.swift in Sources */,
 				300E6D192B5CA935007EF0B2 /* TextContainerView.swift in Sources */,
 				302B33C52B6A8B0400F68863 /* TextProcessorType.swift in Sources */,
 				30E01A142B5CF1D0002BC2D0 /* UIAlertAction+Custom.swift in Sources */,
