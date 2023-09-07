@@ -226,6 +226,13 @@ public extension RichTextLabel {
 // MARK: - UILabel
 
 public extension RichTextLabel {
+
+    @available(*, unavailable, message: "this feature is not supported yet")
+    override var adjustsFontSizeToFitWidth: Bool {
+        get { false }
+        set { }
+    }
+
     override var font: UIFont? {
         didSet {
             guard oldValue != font else { return }
