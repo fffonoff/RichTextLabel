@@ -12,7 +12,7 @@ import SwiftUI
 @available(iOS 14.0, *)
 public struct RichText: View {
 
-    private let text: String?
+    private let text: String
     private let textProcessor: RichTextProcessor
     private let configure: ((_ richText: RichTextLabelProxy) -> Void)?
     private let linkTapAction: ((_ url: URL) -> Void)?
@@ -32,7 +32,7 @@ public struct RichText: View {
     }
 
     public init(
-        _ text: String? = nil,
+        _ text: String,
         textProcessor: RichTextProcessor = PlainTextProcessor(),
         configure: ((RichTextLabelProxy) -> Void)? = nil,
         linkTapAction: ((URL) -> Void)? = nil,
@@ -65,7 +65,7 @@ struct RichTextLabelRepresentable: UIViewRepresentable {
 
     typealias UIViewType = RichTextLabel
 
-    let text: String?
+    let text: String
     let textProcessor: RichTextProcessor
     let configure: ((RichTextLabelProxy) -> Void)?
     let linkTapAction: ((_ url: URL) -> Void)?
