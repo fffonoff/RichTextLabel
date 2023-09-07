@@ -1,12 +1,12 @@
 
 Pod::Spec.new do |spec|
   spec.name          = 'RichTextLabel'
-  spec.version       = '0.1'
+  spec.version       = '0.1.0'
   spec.license       = 'MIT'
   spec.homepage      = 'https://github.com/fffonoff/RichTextLabel'
   spec.author        = { 'Roman Trifonov' => 'roman1trifonoff@gmail.com' }
   spec.summary       = 'Subclass of UILabel that simplifies work with rich text'
-  spec.source        = { :git => 'https://github.com/fffonoff/RichTextLabel.git' }
+  spec.source        = { :git => 'https://github.com/fffonoff/RichTextLabel.git', :tag => spec.version.to_s }
   spec.swift_version = '5.7'
 
   spec.ios.deployment_target = '12.0'
