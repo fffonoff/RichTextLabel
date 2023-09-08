@@ -16,9 +16,25 @@ extension UIColor {
         return .black
     }
 
+    static var linkCompat: UIColor {
+        if #available(iOS 13, *) {
+            return .link
+        }
+
+        return .systemBlue
+    }
+
     static var systemBackgroundCompat: UIColor {
         if #available(iOS 13.0, *) {
             return .systemBackground
+        }
+
+        return .white
+    }
+
+    static var tertiarySystemBackgroundCompat: UIColor {
+        if #available(iOS 13.0, *) {
+            return .tertiarySystemBackground
         }
 
         return .white

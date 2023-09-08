@@ -21,6 +21,19 @@
 		302B33C82B6A8CA500F68863 /* RichTextLabelDT in Frameworks */ = {isa = PBXBuildFile; productRef = 302B33C72B6A8CA500F68863 /* RichTextLabelDT */; };
 		3048697F2B7642BC00C13BA1 /* ScrollView+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3048697E2B7642BC00C13BA1 /* ScrollView+Compatibility.swift */; };
 		3076A0882B73C751006CB799 /* PasteBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076A0872B73C751006CB799 /* PasteBoardView.swift */; };
+		3082ACAE2B76759E00C05CFC /* LivePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACAD2B76759E00C05CFC /* LivePreviewViewController.swift */; };
+		3082ACB72B7675B500C05CFC /* BooleanAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACB22B7675B500C05CFC /* BooleanAttributeView.swift */; };
+		3082ACB82B7675B500C05CFC /* AttributeGroupTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACB32B7675B500C05CFC /* AttributeGroupTitleView.swift */; };
+		3082ACB92B7675B500C05CFC /* NumericAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACB42B7675B500C05CFC /* NumericAttributeView.swift */; };
+		3082ACBA2B7675B500C05CFC /* MultiOptionAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACB52B7675B500C05CFC /* MultiOptionAttributeView.swift */; };
+		3082ACBB2B7675B500C05CFC /* TextContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACB62B7675B500C05CFC /* TextContainerView.swift */; };
+		3082ACBD2B7675CA00C05CFC /* UIAlertAction+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACBC2B7675CA00C05CFC /* UIAlertAction+Custom.swift */; };
+		3082ACC62B76D3F300C05CFC /* RichTextLabelDT in Frameworks */ = {isa = PBXBuildFile; productRef = 3082ACC52B76D3F300C05CFC /* RichTextLabelDT */; };
+		3082ACC82B76D90300C05CFC /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACC72B76D90300C05CFC /* ExampleViewController.swift */; };
+		3082ACCA2B76DCD200C05CFC /* LivePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACC92B76DCD200C05CFC /* LivePreviewViewModel.swift */; };
+		3082ACCD2B76DCFD00C05CFC /* AttributesDescriptionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082ACCC2B76DCFD00C05CFC /* AttributesDescriptionProvider.swift */; };
+		3085F4852B77046600A6AD15 /* TextProcessorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3085F4842B77046600A6AD15 /* TextProcessorType.swift */; };
+		3085F4872B77063A00A6AD15 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3085F4862B77063A00A6AD15 /* Observable.swift */; };
 		308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */; };
 		30B1F6A42B5B404F00ABFE13 /* RichTextLabelExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */; };
 		30B1F6A62B5B404F00ABFE13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1F6A52B5B404F00ABFE13 /* ContentView.swift */; };
@@ -28,7 +41,6 @@
 		30CAF2D92B55F0AB00296DD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2D82B55F0AB00296DD4 /* SceneDelegate.swift */; };
 		30CAF2DB2B55F0AB00296DD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAF2DA2B55F0AB00296DD4 /* ViewController.swift */; };
 		30CAF2E32B55F0AB00296DD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CAF2E12B55F0AB00296DD4 /* LaunchScreen.storyboard */; };
-		30CBD1E22B5B304200F6729B /* RichTextLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 30CBD1E12B5B304200F6729B /* RichTextLabel */; };
 		30E01A072B5CC529002BC2D0 /* AttributesDescriptionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A062B5CC529002BC2D0 /* AttributesDescriptionProvider.swift */; };
 		30E01A0C2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A0B2B5CC68F002BC2D0 /* MultiOptionAttributeView.swift */; };
 		30E01A112B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E01A102B5CEC17002BC2D0 /* UIKitActionSheetHelper.swift */; };
@@ -51,6 +63,18 @@
 		302B33C32B6A8A7900F68863 /* TextProcessorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessorType.swift; sourceTree = "<group>"; };
 		3048697E2B7642BC00C13BA1 /* ScrollView+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+Compatibility.swift"; sourceTree = "<group>"; };
 		3076A0872B73C751006CB799 /* PasteBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteBoardView.swift; sourceTree = "<group>"; };
+		3082ACAD2B76759E00C05CFC /* LivePreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePreviewViewController.swift; sourceTree = "<group>"; };
+		3082ACB22B7675B500C05CFC /* BooleanAttributeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanAttributeView.swift; sourceTree = "<group>"; };
+		3082ACB32B7675B500C05CFC /* AttributeGroupTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeGroupTitleView.swift; sourceTree = "<group>"; };
+		3082ACB42B7675B500C05CFC /* NumericAttributeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericAttributeView.swift; sourceTree = "<group>"; };
+		3082ACB52B7675B500C05CFC /* MultiOptionAttributeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiOptionAttributeView.swift; sourceTree = "<group>"; };
+		3082ACB62B7675B500C05CFC /* TextContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContainerView.swift; sourceTree = "<group>"; };
+		3082ACBC2B7675CA00C05CFC /* UIAlertAction+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Custom.swift"; sourceTree = "<group>"; };
+		3082ACC72B76D90300C05CFC /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		3082ACC92B76DCD200C05CFC /* LivePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePreviewViewModel.swift; sourceTree = "<group>"; };
+		3082ACCC2B76DCFD00C05CFC /* AttributesDescriptionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesDescriptionProvider.swift; sourceTree = "<group>"; };
+		3085F4842B77046600A6AD15 /* TextProcessorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessorType.swift; sourceTree = "<group>"; };
+		3085F4862B77063A00A6AD15 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		308FC77F2B5A2C4A0001940C /* UIColor+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Compatibility.swift"; sourceTree = "<group>"; };
 		30B1F6A12B5B404F00ABFE13 /* RichTextLabelExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextLabelExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B1F6A32B5B404F00ABFE13 /* RichTextLabelExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextLabelExampleApp.swift; sourceTree = "<group>"; };
@@ -82,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30CBD1E22B5B304200F6729B /* RichTextLabel in Frameworks */,
+				3082ACC62B76D3F300C05CFC /* RichTextLabelDT in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +158,64 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
+		3082ACAC2B76757800C05CFC /* LivePreview */ = {
+			isa = PBXGroup;
+			children = (
+				3085F4882B7706A000A6AD15 /* Extensions */,
+				3085F4832B77045600A6AD15 /* Misc */,
+				3085F4892B77082800A6AD15 /* Observable */,
+				3082ACCB2B76DCF200C05CFC /* ViewModel */,
+				3082ACB12B7675B500C05CFC /* Views */,
+				3082ACAD2B76759E00C05CFC /* LivePreviewViewController.swift */,
+			);
+			path = LivePreview;
+			sourceTree = "<group>";
+		};
+		3082ACB12B7675B500C05CFC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3082ACB32B7675B500C05CFC /* AttributeGroupTitleView.swift */,
+				3082ACB22B7675B500C05CFC /* BooleanAttributeView.swift */,
+				3082ACB52B7675B500C05CFC /* MultiOptionAttributeView.swift */,
+				3082ACB42B7675B500C05CFC /* NumericAttributeView.swift */,
+				3082ACB62B7675B500C05CFC /* TextContainerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3082ACCB2B76DCF200C05CFC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3082ACCC2B76DCFD00C05CFC /* AttributesDescriptionProvider.swift */,
+				3082ACC92B76DCD200C05CFC /* LivePreviewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3085F4832B77045600A6AD15 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				3085F4842B77046600A6AD15 /* TextProcessorType.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		3085F4882B7706A000A6AD15 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3082ACBC2B7675CA00C05CFC /* UIAlertAction+Custom.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3085F4892B77082800A6AD15 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				3085F4862B77063A00A6AD15 /* Observable.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
 		308FC77E2B5A2C340001940C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,9 +259,11 @@
 			isa = PBXGroup;
 			children = (
 				308FC77E2B5A2C340001940C /* Extensions */,
+				3082ACAC2B76757800C05CFC /* LivePreview */,
 				30CAF2D62B55F0AB00296DD4 /* AppDelegate.swift */,
 				30CAF2D82B55F0AB00296DD4 /* SceneDelegate.swift */,
 				30CAF2DA2B55F0AB00296DD4 /* ViewController.swift */,
+				3082ACC72B76D90300C05CFC /* ExampleViewController.swift */,
 				30CAF2E12B55F0AB00296DD4 /* LaunchScreen.storyboard */,
 				30CAF2E42B55F0AB00296DD4 /* Info.plist */,
 			);
@@ -242,7 +326,7 @@
 			);
 			name = RichTextLabelUIKit;
 			packageProductDependencies = (
-				30CBD1E12B5B304200F6729B /* RichTextLabel */,
+				3082ACC52B76D3F300C05CFC /* RichTextLabelDT */,
 			);
 			productName = RichTextLabel;
 			productReference = 30CAF2D32B55F0AB00296DD4 /* RichTextLabelUIKit.app */;
@@ -338,7 +422,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				30CAF2D72B55F0AB00296DD4 /* AppDelegate.swift in Sources */,
+				3082ACB82B7675B500C05CFC /* AttributeGroupTitleView.swift in Sources */,
+				3082ACCD2B76DCFD00C05CFC /* AttributesDescriptionProvider.swift in Sources */,
+				3082ACB72B7675B500C05CFC /* BooleanAttributeView.swift in Sources */,
+				3082ACC82B76D90300C05CFC /* ExampleViewController.swift in Sources */,
+				3082ACAE2B76759E00C05CFC /* LivePreviewViewController.swift in Sources */,
+				3082ACCA2B76DCD200C05CFC /* LivePreviewViewModel.swift in Sources */,
+				3082ACBA2B7675B500C05CFC /* MultiOptionAttributeView.swift in Sources */,
+				3082ACB92B7675B500C05CFC /* NumericAttributeView.swift in Sources */,
+				3085F4872B77063A00A6AD15 /* Observable.swift in Sources */,
 				30CAF2D92B55F0AB00296DD4 /* SceneDelegate.swift in Sources */,
+				3082ACBB2B7675B500C05CFC /* TextContainerView.swift in Sources */,
+				3085F4852B77046600A6AD15 /* TextProcessorType.swift in Sources */,
+				3082ACBD2B7675CA00C05CFC /* UIAlertAction+Custom.swift in Sources */,
 				308FC7802B5A2C4A0001940C /* UIColor+Compatibility.swift in Sources */,
 				30CAF2DB2B55F0AB00296DD4 /* ViewController.swift in Sources */,
 			);
@@ -538,8 +634,8 @@
 				INFOPLIST_FILE = UIKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -564,8 +660,8 @@
 				INFOPLIST_FILE = UIKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -617,9 +713,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = RichTextLabelDT;
 		};
-		30CBD1E12B5B304200F6729B /* RichTextLabel */ = {
+		3082ACC52B76D3F300C05CFC /* RichTextLabelDT */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = RichTextLabel;
+			productName = RichTextLabelDT;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
