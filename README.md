@@ -1,8 +1,9 @@
-<img align='right' height=200 src='img/header.gif'>
+# RichTextLabel <img align='right' height=200 src='img/header.gif'>
 <!-- MOBO font is used in the header animation, link: https://flopdesign.booth.pm/items/4647262  -->
 
-# RichTextLabel
 Subclass of UILabel that simplifies work with rich text, providing Markup processing, custom links styling and interaction handling (both tap and long-press gestures), and more
+<br>
+<br>
 
 ## Requirements
 `‎ UIKit: iOS 12+ ‎` `‎ SwiftUI: iOS 14+ ‎` `‎ XCode 14+ ‎`
